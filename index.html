@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supermercado 38 — Arraiján, Panamá Oeste</title>
+<meta name="description" content="Supermercado 38 en Arraiján: carnes frescas, panadería, abarrotes, farmacia, fiestas, mascotas y más. Abierto todos los días hasta las 10 p.m. Tel. 6767-6813.">
+<meta property="og:title" content="Supermercado 38 — Arraiján">
+<meta property="og:description" content="Carnes frescas, panadería, abarrotes, farmacia y más. Todos los días hasta las 10 p.m.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/fachada.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%235c1a13'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-weight='bold' font-size='30' fill='%23d9a83c' text-anchor='middle'%3E38%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GroceryStore",
+  "name": "Supermercado 38",
+  "image": "img/fachada.jpg",
+  "telephone": "+507 6767-6813",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Arraiján",
+    "addressRegion": "Panamá Oeste",
+    "addressCountry": "PA"
+  },
+  "openingHours": "Mo-Su 07:00-22:00",
+  "paymentAccepted": "Efectivo, Tarjeta de débito, Tarjeta de crédito, Pago móvil NFC",
+  "priceRange": "$"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rojo:#a02c20;         --rojo:oklch(0.47 0.18 28);
+    --rojo-prof:#5c1a13;    --rojo-prof:oklch(0.31 0.12 28);
+    --dorado:#d9a83c;       --dorado:oklch(0.80 0.13 85);
+    --amarillo:#f5c842;     --amarillo:oklch(0.88 0.15 95);
+    --crema:#faf6ee;        --crema:oklch(0.97 0.012 85);
+    --tinta:#322b26;        --tinta:oklch(0.26 0.02 40);
+    --verde:#3d8b57;        --verde:oklch(0.54 0.12 145);
+    --ambar:#c07f1f;        --ambar:oklch(0.65 0.13 75);
+    --magenta:#b03d76;      --magenta:oklch(0.52 0.16 350);
+    --azul:#33619e;         --azul:oklch(0.50 0.11 255);
+    --display:'Alfa Slab One', 'Arial Black', serif;
+    --cuerpo:'Karla', 'Segoe UI', sans-serif;
+    --ease:cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--cuerpo);
+    background:var(--crema);
+    color:var(--tinta);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit}
+
+  /* ---------- reveals ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .mosaico .reveal:nth-child(2){transition-delay:.08s}
+  .mosaico .reveal:nth-child(3){transition-delay:.16s}
+  .mosaico .reveal:nth-child(4){transition-delay:.24s}
+  .mosaico .reveal:nth-child(5){transition-delay:.32s}
+  @keyframes heroZoom{from{transform:scale(1.07)}to{transform:none}}
+  @keyframes heroSube{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+  .hero .foto{animation:heroZoom 2.6s var(--ease) both}
+  .hero-inner > *{animation:heroSube .85s var(--ease) both}
+  .hero-inner > :nth-child(1){animation-delay:.15s}
+  .hero-inner > :nth-child(2){animation-delay:.25s}
+  .hero-inner > :nth-child(3){animation-delay:.35s}
+  .hero-inner > :nth-child(4){animation-delay:.5s}
+  .hero-inner > :nth-child(5){animation-delay:.65s}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .cinta-track{animation:none !important}
+    .hero .foto, .hero-inner > *{animation:none}
+  }
+
+  /* ---------- barra superior ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:var(--rojo-prof);
+    color:var(--crema);
+    display:flex;align-items:center;gap:1.5rem;
+    padding:.65rem clamp(1rem,4vw,2.5rem);
+    transition:background .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .topbar.arriba{background:rgba(58,13,8,.42);box-shadow:none}
+  .topbar:not(.arriba){box-shadow:0 4px 18px rgba(40,10,6,.35)}
+  .topbar .marca{
+    font-family:var(--display);
+    font-size:1.05rem;letter-spacing:.03em;
+    text-decoration:none;white-space:nowrap;
+  }
+  .topbar .marca .hanzi{color:var(--dorado);margin-right:.45rem;font-family:var(--cuerpo);font-weight:800}
+  .topbar nav{display:flex;gap:1.4rem;margin-left:auto}
+  .topbar nav a{
+    text-decoration:none;font-weight:700;font-size:.92rem;opacity:.9;
+  }
+  .topbar nav a:hover{opacity:1;color:var(--amarillo)}
+  .chip-abierto{
+    margin-left:1.2rem;
+    background:var(--verde);color:#fff;
+    font-size:.8rem;font-weight:800;
+    padding:.3rem .75rem;border-radius:99px;white-space:nowrap;
+  }
+  .chip-abierto.cerrado{background:#7a4a1f}
+  @media (max-width:920px){
+    .topbar nav{display:none}
+    .chip-abierto{margin-left:auto}
+  }
+  .chip-abierto .corto{display:none}
+  @media (max-width:520px){
+    .topbar{gap:.75rem}
+    .topbar .marca{font-size:.95rem}
+    .chip-abierto{font-size:.72rem;padding:.28rem .6rem}
+    .chip-abierto .largo{display:none}
+    .chip-abierto .corto{display:inline}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:92svh;
+    display:flex;align-items:flex-end;
+    background:var(--rojo-prof);
+    isolation:isolate;
+  }
+  .hero .foto{
+    position:absolute;inset:0;z-index:-1;
+    background:url('img/fachada.jpg') center 62%/cover no-repeat;
+  }
+  .hero .velo{
+    position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(to bottom, rgba(30,10,6,.25) 0%, rgba(30,10,6,.05) 35%, rgba(72,17,11,.55) 72%, rgba(58,13,8,.92) 100%);
+  }
+  .hero-inner{
+    width:100%;
+    padding:clamp(5rem,12vh,9rem) clamp(1rem,5vw,3.5rem) clamp(2.2rem,6vh,4rem);
+    color:var(--crema);
+  }
+  .hero .hanzi-grande{
+    color:var(--dorado);
+    font-weight:800;font-size:clamp(1rem,2vw,1.3rem);
+    letter-spacing:.5em;margin-bottom:.4rem;
+  }
+  .hero .lugar{
+    font-weight:800;text-transform:uppercase;letter-spacing:.18em;
+    font-size:clamp(.75rem,1.5vw,.9rem);
+    color:var(--amarillo);
+    margin-bottom:.8rem;
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-size:clamp(1.9rem,8.8vw,7rem);
+    line-height:.95;
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    max-width:14ch;
+    text-shadow:0 4px 30px rgba(0,0,0,.45);
+  }
+  .hero h1 .num{color:var(--dorado)}
+  .hero .baja{
+    margin-top:1.1rem;
+    font-size:clamp(1rem,2.2vw,1.3rem);
+    max-width:46ch;
+    font-weight:500;
+    color:#f7ede0;
+  }
+  .hero .acciones{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;
+    text-decoration:none;font-weight:800;
+    padding:.85rem 1.5rem;border-radius:8px;
+    font-size:1rem;
+    transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-oro{background:var(--dorado);color:var(--rojo-prof);box-shadow:0 6px 22px rgba(0,0,0,.35)}
+  .btn-linea{border:2px solid rgba(250,246,238,.75);color:var(--crema)}
+  .btn-linea:hover{border-color:var(--amarillo);color:var(--amarillo)}
+
+  /* ---------- cinta de departamentos ---------- */
+  .cinta{
+    background:var(--rojo);
+    color:var(--amarillo);
+    overflow:hidden;
+    padding:.8rem 0;
+    border-top:3px solid var(--dorado);
+    border-bottom:3px solid var(--dorado);
+  }
+  .cinta-track{
+    display:flex;gap:2.5rem;width:max-content;
+    animation:desfile 30s linear infinite;
+    font-family:var(--display);
+    font-size:clamp(1rem,2.4vw,1.35rem);
+    text-transform:uppercase;letter-spacing:.06em;
+    white-space:nowrap;
+  }
+  .cinta-track span::after{content:"★";margin-left:2.5rem;color:var(--crema);font-size:.8em}
+  .cinta:hover .cinta-track{animation-play-state:paused}
+  @keyframes desfile{to{transform:translateX(-50%)}}
+
+  /* ---------- franja de datos rápidos ---------- */
+  .datos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1.2rem 2rem;
+    padding:clamp(1.6rem,4vw,2.4rem) clamp(1rem,5vw,3.5rem);
+    border-bottom:1px solid rgba(120,80,40,.18);
+  }
+  .dato{display:flex;align-items:center;gap:.85rem}
+  .dato svg{width:34px;height:34px;flex:none;color:var(--rojo)}
+  .dato strong{display:block;font-size:.98rem;line-height:1.3}
+  .dato span{font-size:.85rem;color:#6b5f52}
+
+  /* ---------- secciones ---------- */
+  section{padding:clamp(3.5rem,9vw,6.5rem) clamp(1rem,5vw,3.5rem);scroll-margin-top:64px}
+  .titulo{
+    font-family:var(--display);
+    font-size:clamp(1.9rem,5vw,3.4rem);
+    line-height:1.05;
+    text-transform:uppercase;
+    max-width:20ch;
+  }
+  .titulo .sub{color:var(--rojo)}
+  .intro{max-width:58ch;margin-top:1rem;font-size:1.08rem}
+
+  /* ---------- mosaico departamentos ---------- */
+  .mosaico{
+    margin-top:2.5rem;
+    display:grid;gap:14px;
+    grid-template-columns:repeat(6,1fr);
+    grid-auto-rows:210px;
+  }
+  .pieza{
+    position:relative;overflow:hidden;border-radius:14px;
+    background:var(--tinta);
+    transition:box-shadow .5s var(--ease);
+  }
+  .pieza:hover{box-shadow:0 18px 44px rgba(60,20,10,.28)}
+  .pieza .placa{transition:transform .45s var(--ease)}
+  .pieza:hover .placa{transform:rotate(.8deg) translateY(-3px)}
+  .pieza img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .8s var(--ease);
+  }
+  .pieza:hover img{transform:scale(1.045)}
+  .pieza .placa{
+    position:absolute;left:14px;bottom:14px;
+    font-family:var(--display);
+    color:#fff;text-transform:uppercase;
+    font-size:clamp(.95rem,1.8vw,1.25rem);
+    letter-spacing:.04em;
+    padding:.45rem .9rem;border-radius:6px;
+    transform:rotate(-1.5deg);
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+    line-height:1.15;
+  }
+  .pieza .placa small{
+    display:block;font-family:var(--cuerpo);font-weight:700;
+    font-size:.68rem;letter-spacing:.08em;opacity:.92;
+  }
+  .p-carnes{grid-column:span 4;grid-row:span 2}
+  .p-fiestas{grid-column:span 2;grid-row:span 2}
+  .p-mascotas{grid-column:span 2}
+  .p-variedades{grid-column:span 2}
+  .p-mas{
+    grid-column:span 2;
+    background:var(--rojo);color:var(--crema);
+    border-radius:14px;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:1.4rem;gap:.35rem;
+  }
+  .p-mas strong{font-family:var(--display);text-transform:uppercase;font-size:1.05rem;letter-spacing:.04em;color:var(--amarillo)}
+  .p-mas p{font-size:.95rem;line-height:1.5}
+  @media (max-width:900px){
+    .mosaico{grid-template-columns:repeat(2,1fr);grid-auto-rows:190px}
+    .p-carnes{grid-column:span 2;grid-row:span 2}
+    .p-fiestas{grid-column:span 1;grid-row:span 2}
+    .p-mascotas,.p-variedades{grid-column:span 1}
+    .p-mas{grid-column:span 2}
+  }
+
+  /* ---------- panadería ---------- */
+  .panaderia{background:var(--rojo-prof);color:var(--crema)}
+  .pan-grid{
+    display:grid;grid-template-columns:1.1fr .9fr;
+    gap:clamp(1.5rem,4vw,3.5rem);
+    align-items:center;
+    margin-top:2.5rem;
+  }
+  .pan-grid img{border-radius:14px;height:100%;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .panaderia .titulo{color:var(--crema)}
+  .panaderia .titulo .sub{color:var(--dorado)}
+  .panaderia .intro{color:#efe3d2}
+  .pizarra{
+    background:#221a12;
+    border:3px solid var(--dorado);
+    border-radius:14px;
+    padding:clamp(1.3rem,3vw,2.2rem);
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+  }
+  .pizarra h3{
+    font-family:var(--display);
+    color:var(--amarillo);
+    text-transform:uppercase;
+    font-size:clamp(1.15rem,2.4vw,1.6rem);
+    letter-spacing:.05em;
+    margin-bottom:1.1rem;
+    transform:rotate(-1deg);
+  }
+  .pizarra ul{list-style:none;columns:1}
+  @media (min-width:1150px){
+    .pizarra ul{columns:2;column-gap:2.6rem}
+    .pizarra li{break-inside:avoid}
+  }
+  .pizarra li{
+    display:flex;align-items:baseline;gap:.6rem;
+    padding:.42rem 0;
+    font-weight:700;font-size:1.02rem;color:#f3e9da;
+  }
+  .pizarra li .guia{flex:1;border-bottom:2px dotted rgba(217,168,60,.5);transform:translateY(-4px)}
+  .pizarra li .precio{color:var(--amarillo);font-weight:800;white-space:nowrap}
+  .pizarra .nota{margin-top:1rem;font-size:.82rem;color:#c9b795;font-weight:500}
+  @media (max-width:860px){
+    .pan-grid{grid-template-columns:1fr}
+    .pan-grid img{max-height:340px;width:100%}
+  }
+
+  /* ---------- frescura / reseña ---------- */
+  .frescura{
+    position:relative;isolation:isolate;
+    min-height:72svh;
+    display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+    color:var(--crema);
+    padding:clamp(4rem,10vw,7rem) clamp(1rem,5vw,3.5rem);
+  }
+  .frescura .foto{
+    position:absolute;inset:0;z-index:-1;
+    background:url('img/carniceria.jpg') center/cover no-repeat;
+  }
+  .frescura .velo{
+    position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(100deg, rgba(40,8,5,.88) 0%, rgba(40,8,5,.55) 55%, rgba(40,8,5,.25) 100%);
+  }
+  .frescura blockquote{
+    font-family:var(--display);
+    font-size:clamp(1.7rem,4.5vw,3.2rem);
+    line-height:1.15;
+    max-width:18ch;
+    text-transform:uppercase;
+  }
+  .frescura blockquote em{font-style:normal;color:var(--amarillo)}
+  .frescura figcaption{
+    margin-top:1.2rem;font-weight:700;color:#e8d9c4;font-size:.98rem;
+  }
+  .frescura .estrellas{color:var(--amarillo);letter-spacing:.15em}
+
+  /* ---------- info práctica ---------- */
+  .info-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:clamp(1.2rem,3vw,2.5rem);
+    margin-top:2.5rem;
+  }
+  .info-bloque h3{
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-size:1.15rem;letter-spacing:.04em;
+    color:var(--rojo);
+    margin-bottom:.7rem;
+  }
+  .info-bloque p, .info-bloque li{font-size:1rem}
+  .info-bloque ul{list-style:none}
+  .info-bloque li{padding:.22rem 0;font-weight:500}
+  .info-bloque li::before{content:"✓";color:var(--verde);font-weight:800;margin-right:.55rem}
+  .horario-grande{
+    font-family:var(--display);
+    font-size:clamp(1.5rem,3vw,2.1rem);
+    color:var(--tinta);line-height:1.2;
+  }
+  .tel-grande{
+    font-family:var(--display);
+    font-size:clamp(1.5rem,3vw,2.1rem);
+    color:var(--rojo);text-decoration:none;display:inline-block;
+  }
+  .tel-grande:hover{color:var(--rojo-prof)}
+  .ws-link{
+    display:inline-flex;align-items:center;gap:.5rem;
+    margin-top:.6rem;font-weight:800;color:var(--verde);text-decoration:none;
+  }
+  .ws-link:hover{text-decoration:underline}
+  .mapa{
+    margin-top:3rem;border-radius:14px;overflow:hidden;
+    border:3px solid var(--rojo);
+    box-shadow:0 14px 40px rgba(50,20,10,.18);
+  }
+  .mapa iframe{display:block;width:100%;height:420px;border:0}
+  @media (max-width:860px){
+    .info-grid{grid-template-columns:1fr}
+    .mapa iframe{height:320px}
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--rojo-prof);color:#e8d9c4;
+    padding:clamp(2.5rem,6vw,4rem) clamp(1rem,5vw,3.5rem);
+    text-align:center;
+  }
+  footer .hanzi-pie{
+    color:var(--dorado);font-weight:800;
+    font-size:1.6rem;letter-spacing:.6em;margin-bottom:.6rem;
+  }
+  footer .nombre{
+    font-family:var(--display);color:var(--crema);
+    font-size:1.3rem;text-transform:uppercase;letter-spacing:.04em;
+  }
+  footer p{font-size:.92rem;margin-top:.5rem}
+
+  /* ---------- botón whatsapp flotante ---------- */
+  .ws-float{
+    position:fixed;right:18px;bottom:18px;z-index:60;
+    width:56px;height:56px;border-radius:50%;
+    background:#25d366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,.3);
+    transition:transform .25s var(--ease);
+  }
+  .ws-float:hover{transform:scale(1.08)}
+  .ws-float svg{width:30px;height:30px;fill:#fff}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="marca" href="#"><span class="hanzi">三發</span>SUPERMERCADO 38</a>
+  <nav>
+    <a href="#departamentos">Departamentos</a>
+    <a href="#panaderia">Panadería</a>
+    <a href="#info">Horario</a>
+    <a href="#info">Contacto</a>
+  </nav>
+  <span class="chip-abierto"><span class="largo">Abierto hoy hasta las 10 p.m.</span><span class="corto">Hasta 10 p.m.</span></span>
+</header>
+
+<section class="hero" style="padding:0">
+  <div class="foto" role="img" aria-label="Fachada del Supermercado 38 en Arraiján, con sus letras doradas M/S 38 y los afiches de la vitrina"></div>
+  <div class="velo"></div>
+  <div class="hero-inner">
+    <p class="hanzi-grande">三發</p>
+    <p class="lugar">Arraiján · Panamá Oeste</p>
+    <h1>Supermercado <span class="num">38</span></h1>
+    <p class="baja">Carnes frescas, abarrotes, panadería, farmacia, fiestas y mucho más. El súper de tu barrio, todos los días hasta las 10 de la noche.</p>
+    <div class="acciones">
+      <a class="btn btn-oro" href="https://www.google.com/maps/dir/?api=1&destination=W9Q5%2BP2F+Arraij%C3%A1n%2C+Panam%C3%A1" target="_blank" rel="noopener">📍 Cómo llegar</a>
+      <a class="btn btn-linea" href="tel:+50767676813">Llamar 6767-6813</a>
+    </div>
+  </div>
+</section>
+
+<div class="cinta" aria-hidden="true">
+  <div class="cinta-track">
+    <span>Carnes</span><span>Embutidos</span><span>Abarrotes</span><span>Verduras frescas</span><span>Lácteos</span><span>Panadería</span><span>Farmacia</span><span>Sedería</span><span>Fiestas</span><span>Mascotas</span><span>Juguetes</span>
+    <span>Carnes</span><span>Embutidos</span><span>Abarrotes</span><span>Verduras frescas</span><span>Lácteos</span><span>Panadería</span><span>Farmacia</span><span>Sedería</span><span>Fiestas</span><span>Mascotas</span><span>Juguetes</span>
+  </div>
+</div>
+
+<div class="datos">
+  <div class="dato reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+    <div><strong>Abierto 15 horas al día</strong><span>Todos los días, de 7 a.m. a 10 p.m.</span></div>
+  </div>
+  <div class="dato reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/><path d="M6 15h4"/></svg>
+    <div><strong>Tarjetas y pago NFC</strong><span>Débito, crédito y celular sin contacto</span></div>
+  </div>
+  <div class="dato reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8.5v7M8.5 12h7"/></svg>
+    <div><strong>Farmacia adentro</strong><span>Lo básico del botiquín, sin otra parada</span></div>
+  </div>
+  <div class="dato reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 16v-3.5L6 7.5C6.3 6.6 7.1 6 8 6h8c.9 0 1.7.6 2 1.5l2 5V16"/><path d="M4 16h16v3h-2.5v-1.5h-11V19H4z"/><circle cx="8" cy="14" r="1"/><circle cx="16" cy="14" r="1"/></svg>
+    <div><strong>Estacionamiento propio</strong><span>Parquea justo frente a la entrada</span></div>
+  </div>
+</div>
+
+<section id="departamentos">
+  <h2 class="titulo reveal">Todo bajo <span class="sub">un mismo techo</span></h2>
+  <p class="intro reveal">Desde la carne para el sancocho hasta la piñata del cumpleaños. En el 38 encuentras lo que tu casa necesita, sin cruzar medio Arraiján.</p>
+
+  <div class="mosaico">
+    <figure class="pieza p-carnes reveal">
+      <img src="img/carniceria.jpg" alt="Vitrina de la carnicería llena de cortes frescos de res, pollo y cerdo">
+      <figcaption class="placa" style="background:var(--rojo)">Carnicería<small>Cortes frescos todos los días</small></figcaption>
+    </figure>
+    <figure class="pieza p-fiestas reveal">
+      <img src="img/fiestas.jpg" alt="Pasillo de fiestas con velitas, globos, cintas y adornos de cumpleaños">
+      <figcaption class="placa" style="background:var(--magenta)">Fiestas<small>Todo para el cumpleaños</small></figcaption>
+    </figure>
+    <figure class="pieza p-mascotas reveal">
+      <img src="img/mascotas.jpg" alt="Sacos de alimento para perro de varias marcas y pasillo de accesorios para mascotas">
+      <figcaption class="placa" style="background:var(--verde)">Mascotas<small>Alimento y accesorios</small></figcaption>
+    </figure>
+    <figure class="pieza p-variedades reveal">
+      <img src="img/variedades.jpg" alt="Pared de variedades: manualidades, juguetes y accesorios de todos los colores">
+      <figcaption class="placa" style="background:var(--azul)">Variedades<small>Juguetes y manualidades</small></figcaption>
+    </figure>
+    <div class="p-mas reveal">
+      <strong>Y además…</strong>
+      <p>Abarrotes, lácteos, verduras frescas, embutidos, sedería y farmacia. Pregunta en caja: si lo necesitas, seguro lo tenemos.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panaderia" id="panaderia">
+  <h2 class="titulo reveal">Pan fresco, <span class="sub">precio de barrio</span></h2>
+  <p class="intro reveal">Horneado aquí mismo, todos los días. Llévate el pan caliente para el desayuno o la cena sin que te pese el bolsillo.</p>
+  <div class="pan-grid">
+    <img class="reveal" src="img/panaderia.jpg" alt="Vitrinas de la panadería con bandejas de pan francés, dulces, donas y repostería recién horneada">
+    <div class="pizarra reveal">
+      <h3>Precios de panadería</h3>
+      <ul>
+        <li>Pan de agua <span class="guia"></span> <span class="precio">B/. 0.15</span></li>
+        <li>Pan de leche <span class="guia"></span> <span class="precio">B/. 0.18</span></li>
+        <li>Pan francés <span class="guia"></span> <span class="precio">B/. 0.20</span></li>
+        <li>Pan dulce <span class="guia"></span> <span class="precio">B/. 0.25</span></li>
+        <li>Croissant <span class="guia"></span> <span class="precio">B/. 0.30</span></li>
+        <li>Galletas <span class="guia"></span> <span class="precio">B/. 0.30</span></li>
+        <li>Donas <span class="guia"></span> <span class="precio">B/. 0.35</span></li>
+        <li>Empanada <span class="guia"></span> <span class="precio">B/. 0.40</span></li>
+        <li>Muffin <span class="guia"></span> <span class="precio">B/. 0.50</span></li>
+        <li>Queque <span class="guia"></span> <span class="precio">B/. 1.50</span></li>
+      </ul>
+      <p class="nota">Precios de mostrador. Pueden variar sin previo aviso.</p>
+    </div>
+  </div>
+</section>
+
+<figure class="frescura">
+  <div class="foto" role="img" aria-label="Vitrina refrigerada repleta de carnes frescas"></div>
+  <div class="velo"></div>
+  <blockquote>«Buenos <em>productos frescos</em>»</blockquote>
+  <figcaption>
+    <span class="estrellas">★★★★</span> Lo que dicen los vecinos · 249 opiniones en Google
+  </figcaption>
+</figure>
+
+<section id="info">
+  <h2 class="titulo reveal">Aquí <span class="sub">te esperamos</span></h2>
+  <div class="info-grid">
+    <div class="info-bloque reveal">
+      <h3>Horario</h3>
+      <p class="horario-grande">Lunes a domingo<br>7:00 a.m. – 10:00 p.m.</p>
+      <p style="margin-top:.6rem">Abrimos todos los días para servirte.</p>
+    </div>
+    <div class="info-bloque reveal">
+      <h3>Formas de pago</h3>
+      <ul>
+        <li>Efectivo</li>
+        <li>Tarjetas de débito y crédito</li>
+        <li>Pago móvil sin contacto (NFC)</li>
+      </ul>
+    </div>
+    <div class="info-bloque reveal">
+      <h3>Contacto</h3>
+      <a class="tel-grande" href="tel:+50767676813">6767-6813</a>
+      <br>
+      <a class="ws-link" href="https://wa.me/50767676813?text=Hola%2C%20les%20escribo%20desde%20la%20p%C3%A1gina%20web%20%F0%9F%91%8B" target="_blank" rel="noopener">Escríbenos por WhatsApp →</a>
+      <p style="margin-top:.8rem">Calle principal, Arraiján<br>Panamá Oeste (código plus W9Q5+P2F)</p>
+    </div>
+  </div>
+  <div class="mapa reveal">
+    <iframe title="Mapa de ubicación del Supermercado 38 en Arraiján" src="https://www.google.com/maps?q=W9Q5%2BP2F+Arraij%C3%A1n%2C+Panam%C3%A1+Oeste&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<footer>
+  <p class="hanzi-pie">三發</p>
+  <p class="nombre">Supermercado 38</p>
+  <p>Arraiján, Panamá Oeste · Tel. 6767-6813 · Abierto todos los días hasta las 10 p.m.</p>
+  <p><a href="https://www.google.com/maps/dir/?api=1&destination=W9Q5%2BP2F+Arraij%C3%A1n%2C+Panam%C3%A1" target="_blank" rel="noopener" style="color:var(--dorado);font-weight:700">Cómo llegar en Google Maps →</a></p>
+</footer>
+
+<a class="ws-float" href="https://wa.me/50767676813?text=Hola%2C%20les%20escribo%20desde%20la%20p%C3%A1gina%20web%20%F0%9F%91%8B" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 4C9.55 4 4.28 9.27 4.28 15.76c0 2.07.54 4.1 1.58 5.89L4.2 27.8l6.32-1.62a11.7 11.7 0 0 0 5.52 1.4h.01c6.48 0 11.76-5.27 11.76-11.76A11.71 11.71 0 0 0 16.04 4zm0 21.6h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.75.96 1-3.62-.24-.37a9.77 9.77 0 0 1-1.5-5.23c0-5.4 4.4-9.8 9.81-9.8a9.8 9.8 0 0 1 9.8 9.81c0 5.4-4.4 9.8-9.8 9.8zm5.38-7.34c-.3-.15-1.74-.86-2.01-.96-.27-.1-.47-.15-.66.15-.2.29-.76.95-.93 1.15-.17.2-.34.22-.64.07-.3-.14-1.24-.45-2.37-1.45-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.45.13-.6.13-.13.3-.34.44-.51.15-.17.2-.3.3-.49.1-.2.05-.37-.03-.52-.07-.15-.66-1.58-.9-2.17-.24-.57-.48-.49-.66-.5h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.43 0 1.43 1.05 2.82 1.19 3.01.15.2 2.06 3.14 4.98 4.4.7.3 1.24.48 1.66.62.7.22 1.34.19 1.84.11.56-.08 1.74-.71 1.98-1.4.25-.68.25-1.27.17-1.4-.07-.12-.27-.2-.56-.34z"/></svg>
+</a>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    }
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Barra: translúcida sobre el hero, sólida al hacer scroll
+  const barra = document.querySelector('.topbar');
+  const alScroll = () => barra.classList.toggle('arriba', window.scrollY < 40);
+  alScroll();
+  addEventListener('scroll', alScroll, { passive: true });
+
+  // Chip de estado según la hora real de Panamá (abre 7:00, cierra 22:00)
+  const chip = document.querySelector('.chip-abierto');
+  try {
+    const hora = parseInt(new Intl.DateTimeFormat('es-PA', { hour: 'numeric', hour12: false, timeZone: 'America/Panama' }).format(new Date()), 10);
+    const abierto = hora >= 7 && hora < 22;
+    chip.classList.toggle('cerrado', !abierto);
+    const texto = abierto
+      ? { largo: 'Abierto ahora · hasta las 10 p.m.', corto: 'Hasta 10 p.m.' }
+      : { largo: 'Cerrado ahora · abrimos a las 7 a.m.', corto: 'Abre 7 a.m.' };
+    chip.querySelector('.largo').textContent = texto.largo;
+    chip.querySelector('.corto').textContent = texto.corto;
+  } catch (e) { /* si el navegador no soporta zonas horarias, queda el texto fijo */ }
+</script>
+</body>
+</html>
