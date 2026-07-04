@@ -222,6 +222,63 @@
 
   /* ---------- secciones ---------- */
   section{padding:clamp(3.5rem,9vw,6.5rem) clamp(1rem,5vw,3.5rem);scroll-margin-top:64px}
+
+  /* ---------- ofertas de la semana ---------- */
+  .ofertas{background:var(--amarillo)}
+  .ofertas .titulo{color:var(--rojo-prof)}
+  .ofertas .titulo .sub{color:var(--rojo)}
+  .ofertas .vigencia{
+    font-weight:800;color:var(--rojo-prof);
+    margin-top:.6rem;font-size:1.02rem;
+  }
+  .ofertas-grid{
+    margin-top:2.4rem;
+    display:grid;gap:18px;
+    grid-template-columns:repeat(auto-fit, minmax(215px, 1fr));
+  }
+  .oferta{
+    position:relative;
+    background:#fffdf6;
+    border:2px dashed var(--rojo);
+    border-radius:12px;
+    padding:1.5rem 1.3rem 1.2rem;
+    transform:rotate(-.7deg);
+    transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .ofertas-grid .oferta:nth-child(even){transform:rotate(.7deg)}
+  .oferta:hover{transform:rotate(0) scale(1.025);box-shadow:0 14px 34px rgba(90,30,10,.22)}
+  .oferta .sello{
+    position:absolute;top:-12px;right:12px;
+    background:var(--rojo);color:var(--amarillo);
+    font-family:var(--display);font-size:.78rem;
+    letter-spacing:.08em;text-transform:uppercase;
+    padding:.3rem .7rem;border-radius:6px;
+    transform:rotate(2deg);
+  }
+  .oferta h3{
+    font-family:var(--display);
+    font-size:1.15rem;line-height:1.15;
+    text-transform:uppercase;letter-spacing:.02em;
+    color:var(--tinta);
+  }
+  .oferta .detalle{font-size:.88rem;color:#6b5f52;font-weight:700;margin-top:.15rem}
+  .oferta .precio-oferta{
+    font-family:var(--display);
+    color:var(--rojo);
+    font-size:3rem;line-height:1;
+    margin-top:.7rem;
+  }
+  .oferta .precio-oferta sup{font-size:1.1rem;margin-right:.15rem;vertical-align:super}
+  .oferta .precio-oferta small{font-size:1.5rem}
+  .oferta .antes{
+    font-weight:700;color:#8d7f6e;
+    text-decoration:line-through;
+    font-size:.95rem;margin-top:.35rem;
+  }
+  .ofertas .nota-oferta{
+    margin-top:1.6rem;font-size:.85rem;font-weight:600;
+    color:#7a5a10;
+  }
   .titulo{
     font-family:var(--display);
     font-size:clamp(1.9rem,5vw,3.4rem);
@@ -457,6 +514,7 @@
 <header class="topbar">
   <a class="marca" href="#"><span class="hanzi">三發</span>SUPERMERCADO 38</a>
   <nav>
+    <a href="#ofertas">Ofertas</a>
     <a href="#departamentos">Departamentos</a>
     <a href="#panaderia">Panadería</a>
     <a href="#info">Horario</a>
@@ -505,6 +563,56 @@
     <div><strong>Estacionamiento propio</strong><span>Parquea justo frente a la entrada</span></div>
   </div>
 </div>
+
+<section class="ofertas" id="ofertas">
+  <h2 class="titulo reveal">Ofertas <span class="sub">de la semana</span></h2>
+  <p class="vigencia reveal" id="vigencia">Válidas esta semana</p>
+  <div class="ofertas-grid">
+    <div class="oferta reveal">
+      <span class="sello">Oferta</span>
+      <h3>Arroz nacional</h3>
+      <p class="detalle">Bolsa de 5 lb</p>
+      <p class="precio-oferta"><sup>B/.</sup>2<small>.75</small></p>
+      <p class="antes">antes B/. 3.25</p>
+    </div>
+    <div class="oferta reveal">
+      <span class="sello">Oferta</span>
+      <h3>Pollo entero</h3>
+      <p class="detalle">Por libra</p>
+      <p class="precio-oferta"><sup>B/.</sup>0<small>.99</small></p>
+      <p class="antes">antes B/. 1.25</p>
+    </div>
+    <div class="oferta reveal">
+      <span class="sello">Oferta</span>
+      <h3>Aceite vegetal</h3>
+      <p class="detalle">Botella de 1 litro</p>
+      <p class="precio-oferta"><sup>B/.</sup>2<small>.10</small></p>
+      <p class="antes">antes B/. 2.60</p>
+    </div>
+    <div class="oferta reveal">
+      <span class="sello">Oferta</span>
+      <h3>Papel higiénico</h3>
+      <p class="detalle">Paquete de 12 rollos</p>
+      <p class="precio-oferta"><sup>B/.</sup>4<small>.50</small></p>
+      <p class="antes">antes B/. 5.25</p>
+    </div>
+    <div class="oferta reveal">
+      <span class="sello">Oferta</span>
+      <h3>Pet Master</h3>
+      <p class="detalle">Alimento para perro, 20 kg</p>
+      <p class="precio-oferta"><sup>B/.</sup>20<small>.00</small></p>
+      <p class="antes">antes B/. 23.50</p>
+    </div>
+    <div class="oferta reveal">
+      <span class="sello">Oferta</span>
+      <h3>Gaseosa</h3>
+      <p class="detalle">Botella de 2.5 litros</p>
+      <p class="precio-oferta"><sup>B/.</sup>1<small>.85</small></p>
+      <p class="antes">antes B/. 2.25</p>
+    </div>
+  </div>
+  <p class="nota-oferta reveal">Precios de muestra para la demostración. Cada semana se actualizan con las ofertas reales de la tienda.</p>
+</section>
 
 <section id="departamentos">
   <h2 class="titulo reveal">Todo bajo <span class="sub">un mismo techo</span></h2>
@@ -644,6 +752,17 @@
     chip.querySelector('.largo').textContent = texto.largo;
     chip.querySelector('.corto').textContent = texto.corto;
   } catch (e) { /* si el navegador no soporta zonas horarias, queda el texto fijo */ }
+
+  // Vigencia de ofertas: siempre la semana actual (lunes a domingo)
+  try {
+    const hoy = new Date();
+    const dia = (hoy.getDay() + 6) % 7; // 0 = lunes
+    const lunes = new Date(hoy); lunes.setDate(hoy.getDate() - dia);
+    const domingo = new Date(lunes); domingo.setDate(lunes.getDate() + 6);
+    const fmt = new Intl.DateTimeFormat('es-PA', { day: 'numeric', month: 'long', timeZone: 'America/Panama' });
+    document.getElementById('vigencia').textContent =
+      'Válidas del lunes ' + fmt.format(lunes) + ' al domingo ' + fmt.format(domingo);
+  } catch (e) { /* queda el texto genérico */ }
 </script>
 </body>
 </html>
