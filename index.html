@@ -396,8 +396,24 @@
     margin-top:.6rem;font-weight:800;color:var(--verde);text-decoration:none;
   }
   .ws-link:hover{text-decoration:underline}
+  .ruta{
+    display:flex;align-items:center;flex-wrap:wrap;gap:1rem;
+    margin-top:3rem;
+    padding:1.2rem 1.4rem;
+    background:#f1e8d8;
+    border-radius:14px;
+  }
+  .ruta p{font-weight:800;font-size:1.05rem;margin-right:auto}
+  .btn-waze{background:#33ccff;color:#0b3040}
+  .btn-maps{background:var(--rojo);color:#fff}
+  .btn-waze svg,.btn-maps svg{width:20px;height:20px;flex:none}
+  @media (max-width:640px){
+    .ruta{align-items:stretch;flex-direction:column}
+    .ruta p{margin-right:0}
+    .ruta .btn{justify-content:center}
+  }
   .mapa{
-    margin-top:3rem;border-radius:14px;overflow:hidden;
+    margin-top:1rem;border-radius:14px;overflow:hidden;
     border:3px solid var(--rojo);
     box-shadow:0 14px 40px rgba(50,20,10,.18);
   }
@@ -574,6 +590,17 @@
       <a class="ws-link" href="https://wa.me/50767676813?text=Hola%2C%20les%20escribo%20desde%20la%20p%C3%A1gina%20web%20%F0%9F%91%8B" target="_blank" rel="noopener">Escríbenos por WhatsApp →</a>
       <p style="margin-top:.8rem">Calle principal, Arraiján<br>Panamá Oeste (código plus W9Q5+P2F)</p>
     </div>
+  </div>
+  <div class="ruta reveal">
+    <p>¿Vienes en carro? Abre la ruta en tu app favorita:</p>
+    <a class="btn btn-waze" href="https://www.waze.com/ul?ll=8.9394%2C-79.6424&navigate=yes&zoom=17" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 4.5 13.5c-.9 1.4-.3 3.2 1.2 3.9l.6.3c-.2.4-.3.8-.3 1.3a3 3 0 1 0 6 0h.5a3 3 0 1 0 5.9-.8l.4-.2c1.5-.7 2.1-2.5 1.2-3.9L12 2zm0 4.6 5 7.7-1.7.8c-.5.2-.8.7-.8 1.2h-5c0-.5-.3-1-.8-1.2l-1.7-.8 5-7.7z"/></svg>
+      Llegar por Waze
+    </a>
+    <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=W9Q5%2BP2F+Arraij%C3%A1n%2C+Panam%C3%A1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      Llegar por Google Maps
+    </a>
   </div>
   <div class="mapa reveal">
     <iframe title="Mapa de ubicación del Supermercado 38 en Arraiján" src="https://www.google.com/maps?q=W9Q5%2BP2F+Arraij%C3%A1n%2C+Panam%C3%A1+Oeste&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
