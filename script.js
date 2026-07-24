@@ -35,3 +35,28 @@ if ('IntersectionObserver' in window) {
   }), { threshold: .12 });
   document.querySelectorAll('[data-reveal]').forEach((item) => observer.observe(item));
 } else document.querySelectorAll('[data-reveal]').forEach((item) => item.classList.add('visible'));
+
+const quoteForm = document.querySelector('[data-quote-form]');
+if (quoteForm) {
+  const summary = quoteForm.querySelector('[data-quote-summary]');
+  quoteForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(quoteForm);
+    const selected = data.getAll('interes');
+    const lines = [
+      'Hola, quiero solicitar una cotización en Supermercado 38.', '',
+      `Nombre: ${data.get('nombre') || 'No indicado'}`,
+      `Contacto: ${data.get('contacto') || 'No indicado'}`,
+      `Tipo de solicitud: ${data.get('tipo') || 'No indicado'}`,
+      `Interés: ${selected.length ? selected.join(', ') : 'No indicado'}`,
+      `Presupuesto: ${data.get('presupuesto') || 'A definir'}`,
+      `Fecha estimada: ${data.get('fecha') || 'A definir'}`,
+      `Detalles: ${data.get('detalle') || 'Sin detalles adicionales'}`, '',
+      'Agradezco su respuesta. ¡Gracias!'
+    ];
+    const message = lines.join('\n');
+    if (summary) { summary.textContent = message; summary.classList.add('visible'); }
+    window.open(`https://wa.me/50767676813?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+  });
+}
+document.querySelectorAll('[data-year]').forEach((year) => { year.textContent = new Date().getFullYear(); });
