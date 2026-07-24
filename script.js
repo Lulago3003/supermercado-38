@@ -60,3 +60,17 @@ if (quoteForm) {
   });
 }
 document.querySelectorAll('[data-year]').forEach((year) => { year.textContent = new Date().getFullYear(); });
+
+const selectedKit = new URLSearchParams(window.location.search).get('kit');
+if (selectedKit && quoteForm) {
+  const details = quoteForm.querySelector('[name="detalle"]');
+  const type = quoteForm.querySelector('[name="tipo"]');
+  if (type) type.value = 'Otro pedido especial';
+  if (details && !details.value) details.value = `Me interesa el paquete: ${selectedKit}. Por favor, indíquenme disponibilidad y opciones.`;
+  quoteForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+document.querySelectorAll('[data-direct-order]').forEach((button) => button.addEventListener('click', () => {
+  const kit = button.getAttribute('data-direct-order');
+  const message = `Hola, me interesa el paquete ${kit} de Supermercado 38. ¿Me comparten disponibilidad y opciones?`;
+  window.open(`https://wa.me/50767676813?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+}));
