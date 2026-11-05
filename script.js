@@ -16,7 +16,10 @@ if (menuButton && navLinks) {
 
 const currentPage = location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('[data-page]').forEach((link) => {
-  if (link.getAttribute('href') === currentPage) link.classList.add('active');
+  if (link.getAttribute('href') === currentPage) {
+    link.classList.add('active');
+    link.setAttribute('aria-current', 'page');
+  }
 });
 
 const period = document.querySelector('[data-offer-period]');
@@ -69,8 +72,3 @@ if (selectedKit && quoteForm) {
   if (details && !details.value) details.value = `Me interesa el paquete: ${selectedKit}. Por favor, indíquenme disponibilidad y opciones.`;
   quoteForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-document.querySelectorAll('[data-direct-order]').forEach((button) => button.addEventListener('click', () => {
-  const kit = button.getAttribute('data-direct-order');
-  const message = `Hola, me interesa el paquete ${kit} de Supermercado 38. ¿Me comparten disponibilidad y opciones?`;
-  window.open(`https://wa.me/50767676813?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
-}));
