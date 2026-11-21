@@ -67,6 +67,16 @@ window.S38 = {
     ]
   },
 
+  // Opciones que salen al tocar el botón de WhatsApp. Cada una abre el chat
+  // con el mensaje ya escrito. Íconos disponibles: comprar, encargar, averiguar, imprimir, otra.
+  opcionesWhatsapp: [
+    { icono: 'comprar', titulo: 'Quiero comprar', detalle: 'Dinos qué necesitas y te confirmamos', mensaje: 'Hola, Supermercado 38. Quiero comprar:\n' },
+    { icono: 'encargar', titulo: 'Quiero encargar algo', detalle: 'Para una fecha o en cantidad', mensaje: 'Hola, Supermercado 38. Quiero encargar:\n\nLo necesito para el día: ' },
+    { icono: 'averiguar', titulo: 'Quiero averiguar', detalle: 'Si tienen un producto o cuánto cuesta', mensaje: 'Hola, Supermercado 38. Quiero averiguar si tienen: ' },
+    { icono: 'imprimir', titulo: 'Quiero imprimir', detalle: 'Mándanos el archivo por el chat', mensaje: 'Hola, Supermercado 38. Quiero imprimir algo. Ahora les mando el archivo.\nCopias: \n¿A color o en blanco y negro?: ' },
+    { icono: 'otra', titulo: 'Otra cosa', detalle: 'Escríbenos lo que necesites', mensaje: 'Hola, Supermercado 38. Les escribo desde la página web.' }
+  ],
+
   // Ideas que aparecen como botones en "Mi lista" y en Departamentos.
   // Son sugerencias: la tienda confirma disponibilidad por WhatsApp.
   sugerencias: {

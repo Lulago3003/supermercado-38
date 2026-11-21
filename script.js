@@ -52,6 +52,47 @@
     if (a.getAttribute('href') === pagina) a.setAttribute('aria-current', 'page');
   });
 
+  /* ---------- Botón de WhatsApp: el cliente elige qué quiere hacer ---------- */
+  const opcionesWA = D.opcionesWhatsapp || [];
+  if (opcionesWA.length && typeof HTMLDialogElement === 'function') {
+    const trazosWA = {
+      comprar: '<path d="M3.5 9.5h17l-1.7 8.7a2 2 0 0 1-2 1.6H7.2a2 2 0 0 1-2-1.6z"/><path d="M8.5 9.5l3-5.5M15.5 9.5l-3-5.5M9.5 13.5v3M14.5 13.5v3"/>',
+      encargar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h3"/>',
+      averiguar: '<circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1.1.8-1.1 1.5v.5M12 16.6v.1"/>',
+      imprimir: '<path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="2"/><path d="M7 14h10v6.5H7zM17 12h.01"/>',
+      otra: '<path d="M20.5 12a8.5 8.5 0 0 1-12.6 7.45L3.5 20.5l1.1-4.2A8.5 8.5 0 1 1 20.5 12z"/>'
+    };
+    const dialogo = document.createElement('dialog');
+    dialogo.className = 'wa-menu';
+    dialogo.setAttribute('aria-labelledby', 'wa-menu-titulo');
+    dialogo.innerHTML =
+      '<div class="wa-menu-caja">' +
+        '<div class="wa-menu-cabeza"><div><h2 id="wa-menu-titulo">¿Qué quieres hacer?</h2>' +
+        '<p>Elige una opción y te abrimos WhatsApp con el mensaje listo para el ' + escapar(D.telefono) + '.</p>' +
+        '<p class="estado" data-estado></p></div>' +
+        '<button type="button" class="wa-menu-cerrar" aria-label="Cerrar">×</button></div>' +
+        '<ul class="wa-opciones">' + opcionesWA.map((o) =>
+          '<li><a class="wa-opcion" href="' + escapar(enlaceWA(o.mensaje)) + '" target="_blank" rel="noopener">' +
+          '<svg class="icono" viewBox="0 0 24 24" aria-hidden="true">' + (trazosWA[o.icono] || trazosWA.otra) + '</svg>' +
+          '<span><strong>' + escapar(o.titulo) + '</strong><small>' + escapar(o.detalle) + '</small></span></a></li>'
+        ).join('') + '</ul>' +
+        '<p class="wa-menu-pie">¿Son varios productos? <a href="pedidos.html">Arma tu lista</a> y envíala de una vez.</p>' +
+      '</div>';
+    document.body.appendChild(dialogo);
+    document.addEventListener('click', (e) => {
+      const boton = e.target.closest('[data-wa-menu]');
+      if (!boton) return;
+      e.preventDefault();
+      cerrarMenu();
+      dialogo.showModal();
+    });
+    dialogo.addEventListener('click', (e) => {
+      // Un clic fuera de la caja (en el fondo oscuro) o en la X cierra el menú.
+      if (e.target === dialogo || e.target.closest('.wa-menu-cerrar')) dialogo.close();
+      else if (e.target.closest('.wa-opcion')) setTimeout(() => dialogo.close(), 150);
+    });
+  }
+
   /* ---------- Abierto o cerrado (hora de Panamá, UTC−5 todo el año) ---------- */
   const horaPanama = () => {
     const ahora = new Date();
