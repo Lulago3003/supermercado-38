@@ -1,36 +1,98 @@
 /*
   Supermercado 38 · funciones del sitio.
-  Los datos que cambian (horario, ofertas, precios) viven en datos.js.
+  Todo lo que la tienda puede cambiar (secciones, productos, ofertas, precios, horario,
+  textos, avisos y mensajes de WhatsApp) vive en datos.js, que se edita desde el
+  panel de la tienda (admin.html).
   Funciona en GitHub Pages y también abriendo los archivos directo en el navegador.
 */
 (function () {
   'use strict';
 
-  const D = window.S38;
-  if (!D) return;
-
   const $ = (sel, raiz = document) => raiz.querySelector(sel);
   const $$ = (sel, raiz = document) => Array.from(raiz.querySelectorAll(sel));
   const pagina = (location.pathname.split('/').pop() || 'index.html').replace(/(\.html)?$/, '.html');
 
+  /* ---------- Datos (o el borrador del panel, en la vista previa) ---------- */
+  const vistaPrevia = new URLSearchParams(location.search).has('vista-previa');
+  let D = window.S38;
+  if (vistaPrevia) {
+    try {
+      const borrador = JSON.parse(localStorage.getItem('s38-borrador'));
+      if (borrador && borrador.datos) D = borrador.datos;
+    } catch (e) { /* sin borrador: se ve lo publicado */ }
+  }
+  if (!D) return;
+  D.textos = D.textos || {};
+  D.ubicacion = D.ubicacion || {};
+  D.secciones = D.secciones || [];
+  D.preguntas = D.preguntas || [];
+  D.pizarras = D.pizarras || {};
+  D.ofertas = D.ofertas || { lista: [] };
+  D.ofertas.lista = D.ofertas.lista || [];
+  D.kits = D.kits || [];
+  D.horario = D.horario || [];
+
+  /* ---------- Utilidades ---------- */
   const precio = (n) => Number(n).toFixed(2);
   const dinero = (n) => 'B/. ' + precio(n);
-  const enlaceWA = (texto) => 'https://wa.me/' + D.whatsapp + (texto ? '?text=' + encodeURIComponent(texto) : '');
+  const soloDigitos = (s) => String(s || '').replace(/\D/g, '');
+  const digitosTel = soloDigitos(D.telefono);
+  const numeroWA = soloDigitos(D.whatsapp) || (digitosTel.length === 8 ? '507' + digitosTel : digitosTel);
+  const enlaceWA = (texto) => 'https://wa.me/' + numeroWA + (texto ? '?text=' + encodeURIComponent(texto) : '');
   const normalizar = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
-  const escapar = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const slug = (s) => normalizar(s).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const escapar = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const icono = (nombre) => {
-    const trazos = {
-      mas: '<path d="M12 5v14M5 12h14"/>',
-      menos: '<path d="M5 12h14"/>'
-    };
+    const trazos = { mas: '<path d="M12 5v14M5 12h14"/>', menos: '<path d="M5 12h14"/>' };
     return '<svg class="icono" viewBox="0 0 24 24" aria-hidden="true">' + trazos[nombre] + '</svg>';
   };
+  const idSeccion = (s) => s.id || slug(s.nombre) || 'seccion';
+  const textoCartel = (s) => s.cartel || s.nombre;
+  const claseCartel = (s) => 'cartel cartel-' + (/^[a-z]+$/.test(s.color || '') ? s.color : 'carnes');
 
-  /* Precio conocido de un producto (pizarras y ofertas por unidad) */
+  /* Fotos: las originales tienen versiones WebP; las que sube el panel vienen en 600 y 1200 px */
+  const ORIGINALES = ['carniceria', 'panaderia', 'fiestas', 'mascotas', 'variedades', 'fachada'];
+  function htmlFoto(ruta, alt, tamanos, perezosa = true) {
+    if (!ruta) return '';
+    const carga = perezosa ? ' loading="lazy" decoding="async"' : '';
+    const original = /^img\/([a-z0-9-]+)\.jpg$/.exec(ruta);
+    if (original && ORIGINALES.includes(original[1])) {
+      return '<picture><source type="image/webp" srcset="img/web/' + original[1] + '-600.webp 600w, img/web/' + original[1] + '-1200.webp 1200w" sizes="' + tamanos + '">' +
+        '<img src="' + escapar(ruta) + '" alt="' + escapar(alt) + '"' + carga + '></picture>';
+    }
+    const chica = /-1200\.(jpe?g|webp|png)$/i.test(ruta) ? ruta.replace(/-1200\.(jpe?g|webp|png)$/i, '-600.$1') : '';
+    return '<img src="' + escapar(ruta) + '"' + (chica ? ' srcset="' + escapar(chica) + ' 600w, ' + escapar(ruta) + ' 1200w" sizes="' + tamanos + '"' : '') +
+      ' alt="' + escapar(alt) + '"' + carga + ' data-foto="' + escapar(ruta) + '">';
+  }
+
+  /* Precio conocido de un producto (pizarras, ofertas por unidad y productos de las secciones) */
   const preciosConocidos = new Map();
-  Object.values(D.pizarras || {}).forEach((lista) => lista.forEach((p) => preciosConocidos.set(normalizar(p.nombre), p.precio)));
-  ((D.ofertas && D.ofertas.lista) || []).forEach((o) => { if (!o.porLibra) preciosConocidos.set(normalizar(nombreOferta(o)), o.precio); });
-  function nombreOferta(o) { return o.detalle && !o.porLibra ? o.nombre + ' (' + o.detalle.toLowerCase() + ')' : o.nombre; }
+  const nombreOferta = (o) => (o.detalle && !o.porLibra ? o.nombre + ' (' + o.detalle.toLowerCase() + ')' : o.nombre);
+  Object.values(D.pizarras).forEach((lista) => (lista || []).forEach((p) => { if (typeof p.precio === 'number') preciosConocidos.set(normalizar(p.nombre), p.precio); }));
+  D.ofertas.lista.forEach((o) => { if (!o.porLibra && typeof o.precio === 'number') preciosConocidos.set(normalizar(nombreOferta(o)), o.precio); });
+  D.secciones.forEach((s) => (s.productos || []).forEach((p) => {
+    if (p && p.nombre && typeof p.precio === 'number' && !p.porLibra) preciosConocidos.set(normalizar(p.nombre), p.precio);
+  }));
+
+  /* ---------- Textos, teléfono, dirección y mapa ---------- */
+  $$('[data-texto]').forEach((el) => { const t = D.textos[el.dataset.texto]; if (t) el.textContent = t; });
+  if (D.telefono) $$('[data-tel]').forEach((el) => { el.textContent = D.telefono; });
+  if (D.ubicacion.direccion) $$('[data-direccion]').forEach((el) => { el.textContent = D.ubicacion.direccion; });
+  if (D.ubicacion.codigoPlus) {
+    $$('[data-codigo-plus]').forEach((el) => { el.textContent = D.ubicacion.codigoPlus; });
+    $$('[data-copiar]').forEach((b) => { b.dataset.copiar = (D.ubicacion.codigoPlus + ' ' + (D.ubicacion.localidad || '')).trim(); });
+  }
+  if (digitosTel) $$('a[href^="tel:"]').forEach((a) => { a.href = 'tel:+' + (digitosTel.length === 8 ? '507' : '') + digitosTel; });
+  if (numeroWA) $$('a[href*="wa.me/"]').forEach((a) => { a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/' + numeroWA); });
+  const { lat, lng } = D.ubicacion;
+  if (typeof lat === 'number' && typeof lng === 'number') {
+    $$('[data-mapa="waze"]').forEach((a) => { a.href = 'https://waze.com/ul?ll=' + lat + '%2C' + lng + '&navigate=yes'; });
+    $$('[data-mapa="google"]').forEach((a) => { a.href = 'https://www.google.com/maps/dir/?api=1&destination=' + lat + '%2C' + lng; });
+    $$('iframe[data-mapa]').forEach((f) => {
+      const [a, b] = (new URL(f.src).searchParams.get('q') || '').split(',').map(Number);
+      if (Math.abs(a - lat) > 1e-5 || Math.abs(b - lng) > 1e-5) f.src = 'https://maps.google.com/maps?q=' + lat + ',' + lng + '&z=16&hl=es&output=embed';
+    });
+  }
 
   /* ---------- Menú del celular ---------- */
   const menuBoton = $('.menu-boton');
@@ -71,7 +133,7 @@
         '<p>Elige una opción y te abrimos WhatsApp con el mensaje listo para el ' + escapar(D.telefono) + '.</p>' +
         '<p class="estado" data-estado></p></div>' +
         '<button type="button" class="wa-menu-cerrar" aria-label="Cerrar">×</button></div>' +
-        '<ul class="wa-opciones">' + opcionesWA.map((o) =>
+        '<ul class="wa-opciones">' + opcionesWA.filter((o) => o && o.titulo).map((o) =>
           '<li><a class="wa-opcion" href="' + escapar(enlaceWA(o.mensaje)) + '" target="_blank" rel="noopener">' +
           '<svg class="icono" viewBox="0 0 24 24" aria-hidden="true">' + (trazosWA[o.icono] || trazosWA.otra) + '</svg>' +
           '<span><strong>' + escapar(o.titulo) + '</strong><small>' + escapar(o.detalle) + '</small></span></a></li>'
@@ -98,9 +160,13 @@
     const ahora = new Date();
     return new Date(ahora.getTime() + (ahora.getTimezoneOffset() - 300) * 60000);
   };
-  const aMinutos = (hhmm) => { const [h, m] = hhmm.split(':').map(Number); return h * 60 + m; };
+  const hoyISO = () => {
+    const f = horaPanama();
+    return f.getFullYear() + '-' + String(f.getMonth() + 1).padStart(2, '0') + '-' + String(f.getDate()).padStart(2, '0');
+  };
+  const aMinutos = (hhmm) => { const [h, m] = String(hhmm).split(':').map(Number); return h * 60 + m; };
   const formatoHora = (hhmm) => {
-    const [h, m] = hhmm.split(':').map(Number);
+    const [h, m] = String(hhmm).split(':').map(Number);
     const h12 = h % 12 === 0 ? 12 : h % 12;
     return h12 + ':' + String(m).padStart(2, '0') + (h < 12 || h === 24 ? ' a.m.' : ' p.m.');
   };
@@ -151,22 +217,27 @@
   }
 
   $$('[data-horario]').forEach((tabla) => {
-    const orden = [1, 2, 3, 4, 5, 6, 0];
-    const cuerpo = orden.map((i) => {
-      const d = D.horario[i];
-      return '<tr data-dia="' + i + '"><th scope="row">' + escapar(d.dia) + '</th><td>' + horarioDia(d) + '</td></tr>';
-    }).join('');
+    const cuerpo = [1, 2, 3, 4, 5, 6, 0].filter((i) => D.horario[i]).map((i) =>
+      '<tr data-dia="' + i + '"><th scope="row">' + escapar(D.horario[i].dia) + '</th><td>' + horarioDia(D.horario[i]) + '</td></tr>'
+    ).join('');
     tabla.innerHTML = '<caption>Horario</caption><tbody>' + cuerpo + '</tbody>';
   });
   const resumenHorario = () => {
     const textos = D.horario.map(horarioDia);
-    if (textos.every((t) => t === textos[0])) return 'todos los días de ' + textos[0];
+    if (textos.length && textos.every((t) => t === textos[0])) return 'todos los días de ' + textos[0];
     const hoy = D.horario[horaPanama().getDay()];
     return hoy && !hoy.cerrado ? 'hoy de ' + horarioDia(hoy) : 'otro día: hoy está cerrado';
   };
   $$('[data-horario-resumen]').forEach((el) => { el.textContent = resumenHorario(); });
   pintarEstado();
   setInterval(pintarEstado, 60000);
+
+  /* ---------- Aviso de la tienda (sale arriba en todas las páginas) ---------- */
+  const aviso = D.aviso || {};
+  if (aviso.texto && (!aviso.hasta || hoyISO() <= aviso.hasta)) {
+    const cabecera = $('.cabecera');
+    if (cabecera) cabecera.insertAdjacentHTML('afterend', '<div class="aviso-tienda" role="note"><div class="contenedor"><p>' + escapar(aviso.texto) + '</p></div></div>');
+  }
 
   /* ---------- Aviso flotante ---------- */
   const tostada = document.createElement('div');
@@ -292,12 +363,123 @@
     }
   });
 
+  const chip = (nombre) => '<button type="button" class="chip" data-sugerir="' + escapar(nombre) + '" aria-pressed="false">' + escapar(nombre) + ' <span class="chip-n" hidden></span></button>';
+
+  /* ---------- Productos con foto, precio y características ---------- */
+  function htmlProducto(p) {
+    const conPrecio = typeof p.precio === 'number';
+    const unidad = p.porLibra ? 'la libra' : p.unidad;
+    return '<article class="producto">' +
+      (p.foto ? '<div class="producto-foto">' + htmlFoto(p.foto, p.nombre, '(min-width: 700px) 18rem, 50vw') + '</div>' : '') +
+      '<div class="producto-cuerpo">' +
+        '<h3>' + escapar(p.nombre) + '</h3>' +
+        (conPrecio ? '<p class="producto-precio"><span>B/.</span> ' + precio(p.precio) + (unidad ? ' <small>' + escapar(unidad) + '</small>' : '') + '</p>' : '') +
+        ((p.caracteristicas || []).length ? '<ul class="caracteristicas">' + p.caracteristicas.map((c) => '<li>' + escapar(c) + '</li>').join('') + '</ul>' : '') +
+        '<div class="producto-acciones">' + crearPaso(p.nombre, conPrecio && !p.porLibra ? p.precio : undefined) +
+          '<a class="enlace-boton" href="' + escapar(enlaceWA('Hola, ' + D.nombre + '. Quiero averiguar sobre: ' + p.nombre)) + '" target="_blank" rel="noopener">Preguntar</a>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }
+  const productosDe = (s) => (s.productos || []).filter((p) => p && p.nombre);
+  const pizarraHtml = (k) => (k === 'panaderia'
+    ? '<div class="pizarra pizarra-depto" data-pizarra="panaderia"><h3 class="pizarra-titulo">Panadería</h3><ul class="pizarra-lista"></ul></div>'
+    : '<div class="cartulina cartulina-depto" data-pizarra="' + escapar(k) + '"><h3 class="pizarra-titulo">Precios en la tienda</h3><ul class="pizarra-lista"></ul></div>');
+
+  /* ---------- Portada: las vitrinas de la fachada ---------- */
+  const frente = $('[data-frente]');
+  if (frente && D.secciones.length) {
+    const conFoto = D.secciones.filter((s) => s.foto && s.enPortada !== false).slice(0, 7);
+    const sinFoto = D.secciones.filter((s) => !s.foto && s.enPortada !== false);
+    const vitrinas = conFoto.map((s) =>
+      '<a class="vitrina" href="' + escapar(s.enlace && s.enlace.url ? s.enlace.url : 'departamentos.html#' + idSeccion(s)) + '">' +
+      '<span class="' + claseCartel(s) + '">' + escapar(textoCartel(s)) + '</span>' + htmlFoto(s.foto, '', '(min-width: 1000px) 10rem, 45vw', false) + '</a>'
+    );
+    if (sinFoto.length) {
+      const primera = sinFoto[0];
+      const resto = sinFoto.slice(1, 6);
+      const lineas = (resto.length ? resto.map(textoCartel) : (primera.sugerencias || []).slice(0, 5)).map((t) => '<span>' + escapar(t) + '</span>');
+      vitrinas.push('<a class="vitrina vitrina-texto" href="departamentos.html#' + escapar(idSeccion(primera)) + '"><span class="' + claseCartel(primera) + '">' +
+        escapar(textoCartel(primera)) + '</span><span class="vitrina-lista">' + lineas.join('') + '</span></a>');
+    }
+    if (vitrinas.length) {
+      $('[data-vitrinas]', frente).innerHTML = vitrinas.join('');
+      const izq = Math.ceil(vitrinas.length / 2);
+      const der = vitrinas.length - izq;
+      frente.style.gridTemplateColumns = 'repeat(' + izq + ', minmax(0, 1fr)) minmax(0, 1.75fr)' + (der ? ' repeat(' + der + ', minmax(0, 1fr))' : '');
+      $('.puerta', frente).style.gridColumn = String(izq + 1);
+    }
+  }
+
+  /* ---------- Portada: destacados de la tienda ---------- */
+  const destacados = $('[data-destacados]');
+  if (destacados) {
+    const lista = [];
+    D.secciones.forEach((s) => productosDe(s).forEach((p) => { if (p.destacado) lista.push(p); }));
+    destacados.hidden = !lista.length;
+    if (lista.length) $('[data-destacados-lista]', destacados).innerHTML = lista.slice(0, 8).map(htmlProducto).join('');
+  }
+
+  /* ---------- Departamentos ---------- */
+  const contSecciones = $('[data-secciones]');
+  if (contSecciones) {
+    const bloques = [];
+    let tarjetas = [];
+    const cerrarTarjetas = () => { if (tarjetas.length) { bloques.push('<div class="deptos-compactos">' + tarjetas.join('') + '</div>'); tarjetas = []; } };
+    D.secciones.forEach((s) => {
+      if (!s || !s.nombre) return;
+      const id = escapar(idSeccion(s));
+      const productos = productosDe(s);
+      const desc = s.descripcion ? '<p>' + escapar(s.descripcion) + '</p>' : '';
+      const pizarra = s.pizarra ? pizarraHtml(s.pizarra) : '';
+      const enlace = s.enlace && s.enlace.url ? '<div class="acciones"><a class="boton" href="' + escapar(s.enlace.url) + '">' + escapar(s.enlace.texto || 'Ver más') + '</a></div>' : '';
+      const chips = (s.sugerencias || []).length ? '<p class="depto-etiqueta">Suma a tu lista</p><div class="chips">' + s.sugerencias.map(chip).join('') + '</div>' : '';
+      if (!s.foto && !productos.length) {
+        tarjetas.push('<section class="depto-tarjeta" id="' + id + '" aria-labelledby="d-' + id + '"><span class="' + claseCartel(s) + '">' + escapar(textoCartel(s)) + '</span>' +
+          '<div class="depto-tarjeta-cuerpo"><h2 class="h3" id="d-' + id + '">' + escapar(s.nombre) + '</h2>' + desc + pizarra + enlace + chips + '</div></section>');
+        return;
+      }
+      cerrarTarjetas();
+      const figura = s.foto
+        ? '<figure class="depto-vitrina"><span class="' + claseCartel(s) + '">' + escapar(textoCartel(s)) + '</span>' + htmlFoto(s.foto, s.fotoTexto || 'Foto de ' + s.nombre, '(min-width: 860px) 34rem, 100vw') + '</figure>'
+        : '<div class="depto-letrero"><span class="' + claseCartel(s) + '">' + escapar(textoCartel(s)) + '</span></div>';
+      bloques.push('<section class="depto' + (s.foto ? '' : ' depto-sin-foto') + '" id="' + id + '" aria-labelledby="d-' + id + '">' + figura +
+        '<div><h2 id="d-' + id + '">' + escapar(s.nombre) + '</h2>' + desc + pizarra + enlace + chips + '</div>' +
+        (productos.length ? '<div class="productos">' + productos.map(htmlProducto).join('') + '</div>' : '') + '</section>');
+    });
+    cerrarTarjetas();
+    contSecciones.innerHTML = bloques.join('') || '<p class="vacio">Todavía no hay secciones publicadas.</p>';
+    const indice = $('[data-indice]');
+    if (indice) indice.innerHTML = D.secciones.filter((s) => s && s.nombre).map((s) => '<a href="#' + escapar(idSeccion(s)) + '">' + escapar(s.nombre) + '</a>').join('');
+    if (location.hash) {
+      const destino = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (destino) requestAnimationFrame(() => destino.scrollIntoView());
+    }
+  }
+
+  /* ---------- Preguntas frecuentes ---------- */
+  function textoConEnlaces(t) {
+    const valores = { horario: resumenHorario(), telefono: D.telefono || '', pagos: D.textos.pagos || '', direccion: D.ubicacion.direccion || '' };
+    const lleno = String(t || '').replace(/\{(horario|telefono|pagos|direccion)\}/g, (m, k) => valores[k]).replace(/([^.])\.\.(?!\.)/g, '$1.');
+    const texto = escapar(lleno);
+    return texto.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, etiqueta, url) => {
+      if (!/^(https?:\/\/|tel:|[\w-]+\.html(#[\w-]+)?$)/i.test(url)) return etiqueta;
+      return '<a href="' + url + '"' + (/^https?:/i.test(url) ? ' target="_blank" rel="noopener"' : '') + '>' + etiqueta + '</a>';
+    });
+  }
+  const contPreguntas = $('[data-preguntas]');
+  if (contPreguntas && D.preguntas.length) {
+    contPreguntas.innerHTML = D.preguntas.filter((p) => p && p.pregunta).map((p) =>
+      '<details><summary>' + escapar(p.pregunta) + '</summary><p>' + textoConEnlaces(p.respuesta) + '</p></details>'
+    ).join('');
+  }
+
   /* ---------- Pizarras con precios ---------- */
   $$('[data-pizarra]').forEach((caja) => {
-    const lista = (D.pizarras || {})[caja.dataset.pizarra] || [];
+    const lista = D.pizarras[caja.dataset.pizarra] || [];
     const ul = $('.pizarra-lista', caja);
     if (!ul) return;
-    ul.innerHTML = lista.map((p) =>
+    ul.innerHTML = lista.filter((p) => p && p.nombre && typeof p.precio === 'number').map((p) =>
       '<li class="pizarra-fila"><span class="pizarra-nombre">' + escapar(p.nombre) + '</span>' +
       '<span class="pizarra-precio">' + precio(p.precio) + '</span>' + crearPaso(p.nombre, p.precio) + '</li>'
     ).join('');
@@ -330,7 +512,7 @@
   }
 
   /* ---------- Ofertas ---------- */
-  const O = D.ofertas || { lista: [] };
+  const O = D.ofertas;
   const fechaLarga = new Intl.DateTimeFormat('es-PA', { day: 'numeric', month: 'long', timeZone: 'UTC' });
   function periodoOfertas() {
     if (O.desde && O.hasta) {
@@ -341,20 +523,17 @@
     }
     return 'Precios de la semana. Hasta agotar existencias.';
   }
-  const vencidas = () => {
-    if (!O.hasta) return false;
-    const fin = new Date(O.hasta + 'T23:59:59-05:00');
-    return Date.now() > fin.getTime();
-  };
+  const vencidas = () => !!O.hasta && O.hasta < hoyISO();
   $$('[data-ofertas]').forEach((caja) => {
     const limite = Number(caja.dataset.limite) || Infinity;
-    const lista = (O.lista || []).slice(0, limite);
+    const lista = O.lista.filter((o) => o && o.nombre && typeof o.precio === 'number').slice(0, limite);
     if (!lista.length || vencidas()) {
-      caja.innerHTML = '<p class="vacio">Estamos preparando las ofertas de esta semana. Pregunta por la oferta del día en la tienda o por <a href="' + enlaceWA('Hola, ¿qué ofertas tienen esta semana?') + '" target="_blank" rel="noopener">WhatsApp</a>.</p>';
+      caja.innerHTML = '<p class="vacio">Estamos preparando las ofertas de esta semana. Pregunta por la oferta del día en la tienda o por <a href="' + escapar(enlaceWA('Hola, ¿qué ofertas tienen esta semana?')) + '" target="_blank" rel="noopener">WhatsApp</a>.</p>';
       return;
     }
     caja.innerHTML = lista.map((o) =>
       '<article class="oferta' + (o.destacada ? ' oferta-destacada' : '') + '">' +
+        (o.foto ? '<div class="oferta-foto">' + htmlFoto(o.foto, '', '(min-width: 640px) 16rem, 80vw') + '</div>' : '') +
         '<h3>' + escapar(o.nombre) + '</h3>' +
         (o.detalle ? '<p class="oferta-detalle">' + escapar(o.detalle) + '</p>' : '') +
         '<p class="oferta-precio"><small>B/.</small> ' + precio(o.precio) + (o.porLibra ? ' <small>la libra</small>' : '') + '</p>' +
@@ -363,34 +542,39 @@
     ).join('');
   });
   $$('[data-ofertas-nota]').forEach((el) => {
+    if (vencidas() || !O.lista.length) { el.innerHTML = ''; return; }
     el.innerHTML = O.ejemplo
       ? '<span aria-hidden="true">✱</span><span><strong>Precios de muestra.</strong> Confirma el precio del día en la tienda o por WhatsApp antes de venir.</span>'
       : '<span aria-hidden="true">✱</span><span><strong>' + escapar(periodoOfertas()) + '</strong> Precios en balboas. El precio final es el de caja.</span>';
   });
 
-  /* ---------- Sugerencias y kits ---------- */
-  const chip = (nombre) => '<button type="button" class="chip" data-sugerir="' + escapar(nombre) + '" aria-pressed="false">' + escapar(nombre) + ' <span class="chip-n" hidden></span></button>';
-  $$('[data-sugerencias]').forEach((caja) => {
-    const claves = caja.dataset.sugerencias.split(',').map((s) => s.trim());
-    caja.innerHTML = claves.map((k) => (D.sugerencias[k] || []).map(chip).join('')).join('');
-  });
-  const titulosGrupos = { carniceria: 'Carnicería', abarrotes: 'Abarrotes', verduras: 'Verduras y frutas', lacteos: 'Lácteos y huevos', sederia: 'Sedería y limpieza', fiestas: 'Fiestas', mascotas: 'Mascotas', variedades: 'Variedades' };
+  /* ---------- Mi lista: sugerencias por sección y listas armadas ---------- */
   $$('[data-grupos]').forEach((caja) => {
     const ancho = window.matchMedia('(min-width: 980px)').matches;
-    caja.innerHTML = Object.keys(titulosGrupos).map((k, i) =>
-      '<details class="grupo"' + (ancho || i === 0 ? ' open' : '') + '><summary>' + titulosGrupos[k] + '</summary><div class="chips">' + (D.sugerencias[k] || []).map(chip).join('') + '</div></details>'
+    const grupos = D.secciones.filter((s) => s && s.nombre).map((s) => {
+      const vistos = new Set();
+      const nombres = (s.sugerencias || []).concat(productosDe(s).map((p) => p.nombre)).filter((n) => {
+        if (!n || vistos.has(normalizar(n))) return false;
+        vistos.add(normalizar(n));
+        return true;
+      });
+      return { titulo: s.nombre, nombres };
+    }).filter((g) => g.nombres.length);
+    caja.innerHTML = grupos.map((g, i) =>
+      '<details class="grupo"' + (ancho || i === 0 ? ' open' : '') + '><summary>' + escapar(g.titulo) + '</summary><div class="chips">' + g.nombres.map(chip).join('') + '</div></details>'
     ).join('');
   });
   $$('[data-kits]').forEach((caja) => {
-    caja.innerHTML = (D.kits || []).map((k, i) =>
+    const kits = D.kits.filter((k) => k && k.nombre && (k.productos || []).length);
+    caja.innerHTML = kits.map((k, i) =>
       '<button type="button" class="kit" data-kit="' + i + '"><strong>' + escapar(k.nombre) + '</strong><span>' + k.productos.length + ' productos</span></button>'
     ).join('');
     caja.addEventListener('click', (e) => {
       const b = e.target.closest('[data-kit]');
       if (!b) return;
-      const kit = D.kits[Number(b.dataset.kit)];
+      const kit = kits[Number(b.dataset.kit)];
       const copia = Lista.todos();
-      kit.productos.forEach(([nombre, cantidad]) => Lista.agregar(nombre, cantidad));
+      kit.productos.forEach(([nombre, cantidad]) => Lista.agregar(nombre, Number(cantidad) || 1));
       avisar('Agregamos ' + kit.productos.length + ' productos de «' + kit.nombre + '»', { texto: 'Deshacer', hacer: () => Lista.reponer(copia) });
     });
   });
@@ -405,7 +589,7 @@
       const texto = campo.value.trim();
       if (!texto) { avisar('Escribe el nombre de un producto'); campo.focus(); return; }
       Lista.agregar(texto, 1);
-      avisar(texto + ' en tu lista');
+      avisar(texto + ' en tu lista', { texto: 'Ver lista', href: '#tu-lista' });
       campo.value = '';
       campo.focus();
     });
@@ -414,7 +598,7 @@
   const DATOS = 's38-datos';
   function mensajeLista() {
     const f = panel ? new FormData($('[data-datos]', panel)) : new FormData();
-    const lineas = ['Hola, Supermercado 38. Quiero hacer este pedido:', ''];
+    const lineas = ['Hola, ' + D.nombre + '. Quiero hacer este pedido:', ''];
     Lista.todos().forEach((i) => lineas.push('• ' + i.cantidad + ' ' + i.nombre + (i.precio != null ? ' (' + dinero(i.precio) + (i.cantidad > 1 ? ' c/u' : '') + ')' : '')));
     lineas.push('');
     if (f.get('nombre')) lineas.push('Nombre: ' + f.get('nombre'));
@@ -511,7 +695,7 @@
       const f = new FormData(especial);
       const intereses = f.getAll('interes');
       const fecha = f.get('fecha') ? new Intl.DateTimeFormat('es-PA', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(f.get('fecha') + 'T12:00:00Z')) : '';
-      const lineas = ['Hola, Supermercado 38. Quiero hacer un pedido especial.', ''];
+      const lineas = ['Hola, ' + D.nombre + '. Quiero hacer un pedido especial.', ''];
       lineas.push('Nombre: ' + (f.get('nombre') || '(sin indicar)'));
       if (f.get('contacto')) lineas.push('Contacto: ' + f.get('contacto'));
       lineas.push('Es para: ' + (f.get('tipo') || '(sin indicar)'));
@@ -556,8 +740,50 @@
     }
   }));
 
-  /* ---------- Año del pie ---------- */
+  /* ---------- Año del pie y datos para Google ---------- */
   $$('[data-anio]').forEach((el) => { el.textContent = horaPanama().getFullYear(); });
+  $$('script[type="application/ld+json"]').forEach((s) => {
+    try {
+      const j = JSON.parse(s.textContent);
+      if (D.telefono) j.telephone = '+507 ' + D.telefono;
+      if (j.address && D.ubicacion.direccion) j.address.streetAddress = D.ubicacion.direccion.split(',')[0].trim();
+      if (j.geo && typeof lat === 'number') { j.geo.latitude = lat; j.geo.longitude = lng; }
+      const dias = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const grupos = {};
+      D.horario.forEach((d, i) => {
+        if (!d || d.cerrado) return;
+        const k = d.abre + '-' + d.cierra;
+        (grupos[k] = grupos[k] || { '@type': 'OpeningHoursSpecification', dayOfWeek: [], opens: d.abre, closes: d.cierra }).dayOfWeek.push(dias[i]);
+      });
+      j.openingHoursSpecification = Object.values(grupos);
+      s.textContent = JSON.stringify(j);
+    } catch (e) { /* se queda el que trae la página */ }
+  });
+
+  /* ---------- Vista previa desde el panel ---------- */
+  if (vistaPrevia) {
+    $$('a[href]').forEach((a) => {
+      const href = a.getAttribute('href');
+      if (!/^[\w-]+\.html([?#].*)?$/.test(href)) return;
+      const [base, ancla] = href.split('#');
+      a.setAttribute('href', base + (base.includes('?') ? '&' : '?') + 'vista-previa' + (ancla ? '#' + ancla : ''));
+    });
+    document.body.insertAdjacentHTML('afterbegin', '<div class="aviso-vista-previa" role="note"><div class="contenedor">' +
+      '<p><strong>Vista previa.</strong> Así se verá la página con tus cambios; todavía no están publicados.</p>' +
+      '<a class="boton boton-claro" href="admin.html">Volver al panel</a></div></div>');
+    // Las fotos nuevas todavía no están en la página: se guardaron en este aparato.
+    try {
+      const pedido = indexedDB.open('s38-panel', 1);
+      pedido.onupgradeneeded = () => pedido.result.createObjectStore('fotos');
+      pedido.onsuccess = () => {
+        const almacen = () => pedido.result.transaction('fotos').objectStore('fotos');
+        $$('img[data-foto^="img/subidas/"]').forEach((img) => {
+          const leida = almacen().get(img.dataset.foto);
+          leida.onsuccess = () => { if (leida.result) { img.removeAttribute('srcset'); img.src = URL.createObjectURL(leida.result); } };
+        });
+      };
+    } catch (e) { /* sin fotos guardadas */ }
+  }
 
   /* ---------- Pintar todo y escuchar cambios ---------- */
   function pintarTodo(saltar) { pintarContadores(saltar); pintarPanel(); pintarPasos(); pintarBolsa(); pintarResumen(); }

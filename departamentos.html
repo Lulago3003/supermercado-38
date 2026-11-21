@@ -54,7 +54,7 @@
 
     <div class="contenedor intro">
       <p>Lo del día a día bajo un mismo techo: de la carne para el almuerzo a las velitas del cumpleaños. Toca un producto para sumarlo a tu lista y pedirlo por WhatsApp.</p>
-      <nav class="indice" aria-label="Ir a un departamento">
+      <nav class="indice" aria-label="Ir a un departamento" data-indice>
         <a href="#carniceria">Carnicería</a>
         <a href="#panaderia">Panadería</a>
         <a href="#abarrotes">Abarrotes y más</a>
@@ -64,109 +64,8 @@
       </nav>
     </div>
 
-    <div class="contenedor seccion-deptos">
-      <section class="depto" id="carniceria" aria-labelledby="d-carniceria">
-        <figure class="depto-vitrina">
-          <span class="cartel cartel-carnes">Carnes y embutidos</span>
-          <picture>
-            <source type="image/webp" srcset="img/web/carniceria-600.webp 600w, img/web/carniceria-1200.webp 1200w" sizes="(min-width: 860px) 34rem, 100vw">
-            <img src="img/carniceria.jpg" alt="Vitrina refrigerada con cortes de res, cerdo y pollo" width="1537" height="1023" loading="lazy" decoding="async">
-          </picture>
-        </figure>
-        <div>
-          <h2 id="d-carniceria">Carnicería</h2>
-          <p>Res, pollo y cerdo en la vitrina, y embutidos para el desayuno o la parrillada del fin de semana.</p>
-          <p class="depto-etiqueta">Suma a tu lista</p>
-          <div class="chips" data-sugerencias="carniceria"></div>
-        </div>
-      </section>
-
-      <section class="depto" id="panaderia" aria-labelledby="d-panaderia">
-        <figure class="depto-vitrina">
-          <span class="cartel cartel-panaderia">Panadería</span>
-          <picture>
-            <source type="image/webp" srcset="img/web/panaderia-600.webp 600w, img/web/panaderia-1200.webp 1200w" sizes="(min-width: 860px) 34rem, 100vw">
-            <img src="img/panaderia.jpg" alt="Estantes con pan, croissants, donas y queques" width="1448" height="1086" loading="lazy" decoding="async">
-          </picture>
-        </figure>
-        <div>
-          <h2 id="d-panaderia">Panadería</h2>
-          <p>Pan de agua, de leche, francés y dulce, croissants, donas, empanadas, muffins, galletas y queque. Los precios están en la pizarra.</p>
-          <div class="acciones"><a class="boton" href="panaderia.html">Ver precios del pan</a></div>
-        </div>
-      </section>
-
-      <section class="depto" id="abarrotes" aria-labelledby="d-abarrotes">
-        <figure class="depto-vitrina">
-          <span class="cartel cartel-abarrotes">Abarrotes</span>
-          <div class="depto-poster vitrina-lista" aria-hidden="true"><span>Lácteos</span><span>Verduras frescas</span><span>Sedería</span><span>Embutidos</span><span>Farmacia</span></div>
-        </figure>
-        <div>
-          <h2 id="d-abarrotes">Abarrotes, verduras, lácteos y sedería</h2>
-          <p>Lo de la compra de la semana: granos, aceite, café y enlatados; verduras y viandas frescas; leche, huevos y queso; productos de cuidado personal y limpieza, y lo básico del botiquín.</p>
-          <p class="depto-etiqueta">Abarrotes</p>
-          <div class="chips" data-sugerencias="abarrotes"></div>
-          <p class="depto-etiqueta">Verduras y frutas</p>
-          <div class="chips" data-sugerencias="verduras"></div>
-          <p class="depto-etiqueta">Lácteos y huevos</p>
-          <div class="chips" data-sugerencias="lacteos"></div>
-          <p class="depto-etiqueta">Sedería y limpieza</p>
-          <div class="chips" data-sugerencias="sederia"></div>
-        </div>
-      </section>
-
-      <section class="depto" id="fiestas" aria-labelledby="d-fiestas">
-        <figure class="depto-vitrina">
-          <span class="cartel cartel-fiestas">Fiestas y cumpleaños</span>
-          <picture>
-            <source type="image/webp" srcset="img/web/fiestas-600.webp 600w, img/web/fiestas-1200.webp 1200w" sizes="(min-width: 860px) 34rem, 100vw">
-            <img src="img/fiestas.jpg" alt="Pared con velas de número, velitas, letreros de Feliz cumpleaños, globos y gorritos" width="1448" height="1086" loading="lazy" decoding="async">
-          </picture>
-        </figure>
-        <div>
-          <h2 id="d-fiestas">Fiestas y cumpleaños</h2>
-          <p>Una pared completa para celebrar: velas de número doradas y plateadas, velitas, letreros de Feliz cumpleaños, toppers para el pastel, globos, gorritos y papel de regalo.</p>
-          <p class="depto-etiqueta">Suma a tu lista</p>
-          <div class="chips" data-sugerencias="fiestas"></div>
-          <p class="nota">¿Es para una fiesta grande? Haz un <a href="cotizacion.html?kit=Cumplea%C3%B1os">pedido especial</a>.</p>
-        </div>
-      </section>
-
-      <section class="depto" id="mascotas" aria-labelledby="d-mascotas">
-        <figure class="depto-vitrina">
-          <span class="cartel cartel-mascotas">Mascotas</span>
-          <picture>
-            <source type="image/webp" srcset="img/web/mascotas-600.webp 600w, img/web/mascotas-1200.webp 1200w" sizes="(min-width: 860px) 34rem, 100vw">
-            <img src="img/mascotas.jpg" alt="Sacos de comida para perro Pet Master, Ascan y Master Dog apilados en el pasillo" width="1086" height="1448" loading="lazy" decoding="async">
-          </picture>
-        </figure>
-        <div>
-          <h2 id="d-mascotas">Mascotas</h2>
-          <p>Sacos de comida para perro de varias marcas, snacks, correas y juguetes para los consentidos de la casa.</p>
-          <div class="cartulina cartulina-depto" data-pizarra="mascotas">
-            <h3 class="pizarra-titulo">Precios en la tienda</h3>
-            <ul class="pizarra-lista"></ul>
-          </div>
-          <p class="depto-etiqueta">También en tu lista</p>
-          <div class="chips" data-sugerencias="mascotas"></div>
-        </div>
-      </section>
-
-      <section class="depto" id="variedades" aria-labelledby="d-variedades">
-        <figure class="depto-vitrina">
-          <span class="cartel cartel-variedades">Variedades</span>
-          <picture>
-            <source type="image/webp" srcset="img/web/variedades-600.webp 600w, img/web/variedades-1200.webp 1200w" sizes="(min-width: 860px) 34rem, 100vw">
-            <img src="img/variedades.jpg" alt="Pared de manualidades con limpiapipas, pompones, acuarelas, lupas y animalitos de juguete" width="1448" height="1086" loading="lazy" decoding="async">
-          </picture>
-        </figure>
-        <div>
-          <h2 id="d-variedades">Variedades y manualidades</h2>
-          <p>Para las tareas de la escuela y los ratos libres: limpiapipas, pompones, acuarelas, cuadernos, lupas y juguetes.</p>
-          <p class="depto-etiqueta">Suma a tu lista</p>
-          <div class="chips" data-sugerencias="variedades"></div>
-        </div>
-      </section>
+    <div class="contenedor seccion-deptos" data-secciones>
+      <noscript><p class="vacio">Para ver los departamentos activa JavaScript o escríbenos por WhatsApp al 6767-6813.</p></noscript>
     </div>
 
     <section class="seccion seccion-arena" aria-labelledby="t-lista">
@@ -194,14 +93,14 @@
         </div>
         <div>
           <h2>Dirección</h2>
-          <p>Calle principal, Arraiján, Panamá Oeste<br>Código plus W9Q5+P2F</p>
+          <p><span data-direccion>Calle principal, Arraiján, Panamá Oeste</span><br>Código plus <span data-codigo-plus>W9Q5+P2F</span></p>
           <p><a href="contacto.html">Cómo llegar</a></p>
         </div>
         <div>
           <h2>Escríbenos</h2>
           <div class="pie-enlaces">
-            <a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener" data-wa-menu>WhatsApp 6767-6813</a>
-            <a href="tel:+50767676813">Llamar al 6767-6813</a>
+            <a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener" data-wa-menu>WhatsApp <span data-tel>6767-6813</span></a>
+            <a href="tel:+50767676813">Llamar al <span data-tel>6767-6813</span></a>
           </div>
         </div>
         <div>

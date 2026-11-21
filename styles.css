@@ -170,6 +170,14 @@ h3, .h3 { font-size: 1.2rem; font-weight: 800; font-stretch: 100%; line-height: 
   .menu .menu-wa:hover { background: #0b6233; color: #fff; }
 }
 
+/* ---------- Aviso de la tienda y vista previa del panel ---------- */
+.aviso-tienda { border-bottom: 2px solid #1d1b16; background: var(--pizarra); color: #1d1b16; }
+.aviso-tienda p { margin: 0; padding: .65rem 0; font-weight: 750; line-height: 1.35; text-align: center; text-wrap: balance; }
+.aviso-vista-previa { background: #1f5faf; color: #fff; }
+.aviso-vista-previa .contenedor { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; padding: .6rem 0; }
+.aviso-vista-previa p { margin: 0; }
+.aviso-vista-previa .boton { min-height: 2.4rem; padding: .35rem .9rem; }
+
 /* ---------- Fachada (portada) ---------- */
 .lamina {
   position: relative; overflow: hidden;
@@ -261,7 +269,7 @@ h3, .h3 { font-size: 1.2rem; font-weight: 800; font-stretch: 100%; line-height: 
   border: 7px solid var(--vino); background: #fff;
   color: var(--tinta); text-decoration: none;
 }
-.vitrina picture { flex: 1; min-height: 0; }
+.vitrina picture, .vitrina > img { flex: 1; min-height: 0; }
 .vitrina img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
 .vitrina:hover img { transform: scale(1.04); }
 .vitrina-texto { justify-content: flex-start; }
@@ -416,6 +424,8 @@ h3, .h3 { font-size: 1.2rem; font-weight: 800; font-stretch: 100%; line-height: 
   background: rgba(255, 255, 255, .6); box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
 }
 .oferta h3 { font: 400 1.5rem/1.1 var(--marcador); }
+.oferta-foto { margin: -.35rem -.2rem .55rem; }
+.oferta-foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 5px solid #fff; box-shadow: 0 8px 16px -10px rgba(0, 0, 0, .6); transform: rotate(-1.5deg); }
 .oferta-detalle { margin: 0; font-weight: 600; }
 .oferta-precio { margin: .35rem 0 .6rem; font: 400 2.7rem/1 var(--marcador); }
 .oferta-precio small { font-size: .45em; }
@@ -505,12 +515,45 @@ h3, .h3 { font-size: 1.2rem; font-weight: 800; font-stretch: 100%; line-height: 
 @media (min-width: 860px) {
   .depto { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: center; }
   .depto:nth-of-type(even) .depto-vitrina { order: 2; }
+  .depto.depto-sin-foto { grid-template-columns: minmax(0, 1fr); }
 }
 .depto-vitrina { margin: 0; border: 8px solid var(--vino); background: #fff; }
 .depto-vitrina .cartel { font-size: clamp(1.4rem, 3vw, 1.9rem); padding: .6rem .5rem .5rem; }
 .depto-vitrina img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .depto-poster { display: grid; gap: .15rem; padding: 1.2rem 1rem 1.4rem; font-weight: 900; font-stretch: 70%; font-size: clamp(1.6rem, 4.2vw, 2.4rem); line-height: 1.02; text-transform: uppercase; }
 .seccion-deptos { padding-bottom: clamp(2rem, 5vw, 3rem); }
+.depto > .productos { grid-column: 1 / -1; order: 3; margin-top: .25rem; }
+.depto-letrero .cartel { display: inline-block; padding: .55rem 1.2rem .45rem; border: 6px solid var(--vino); font-size: clamp(1.6rem, 4vw, 2.3rem); }
+.pizarra-depto { max-width: 30rem; margin: 1.25rem 0 .5rem; }
+.deptos-compactos {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 1.1rem;
+  padding-block: clamp(2rem, 5vw, 3rem); border-top: 1px solid var(--lamina-3);
+}
+.depto-tarjeta { display: flex; flex-direction: column; overflow: hidden; border: 6px solid var(--vino); background: #fff; scroll-margin-top: calc(var(--cabecera) + 1rem); }
+.depto-tarjeta > .cartel { padding: .6rem .5rem .5rem; font-size: 1.55rem; }
+.depto-tarjeta-cuerpo { padding: 1rem 1.1rem 1.2rem; }
+.depto-tarjeta-cuerpo h2 { margin-bottom: .4rem; }
+.depto-tarjeta-cuerpo p { margin: 0 0 .5rem; color: var(--tinta-2); }
+.depto-tarjeta .depto-etiqueta { margin: .9rem 0 .5rem; color: var(--tinta); font-weight: 800; }
+.depto-tarjeta .chip { min-height: 2.25rem; padding: .3rem .7rem; font-size: .93rem; }
+
+/* Productos y servicios con foto, precio y características */
+.productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14.5rem), 1fr)); gap: 1.1rem; }
+.producto { display: flex; flex-direction: column; overflow: hidden; border: 2px solid var(--lamina-3); border-radius: 8px; background: #fff; }
+.producto-foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.producto-cuerpo { display: flex; flex: 1; flex-direction: column; gap: .55rem; padding: .9rem 1rem 1rem; }
+.producto h3 { font-size: 1.12rem; }
+.producto .producto-precio {
+  align-self: flex-start; max-width: none; margin: 0; padding: .28rem .6rem .2rem;
+  border-radius: 3px; background: var(--pizarra); color: #1d1b16;
+  font-size: 1.4rem; font-weight: 900; font-variant-numeric: tabular-nums; line-height: 1.1;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .14);
+}
+.producto .producto-precio span { font-size: .68em; }
+.producto .producto-precio small { font-size: .6em; font-weight: 700; }
+.caracteristicas { margin: 0; padding-left: 1.15rem; color: var(--tinta-2); font-size: .95rem; }
+.caracteristicas li { margin: .15rem 0; }
+.producto-acciones { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-top: auto; padding-top: .35rem; }
 .depto h2 { margin-bottom: .75rem; }
 .depto p { max-width: 58ch; color: var(--tinta-2); font-size: 1.06rem; }
 .depto .depto-etiqueta { margin: 1.25rem 0 .6rem; color: var(--tinta); font-size: 1rem; font-weight: 800; }

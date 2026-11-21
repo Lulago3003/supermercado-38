@@ -77,19 +77,19 @@
       <div class="contenedor visita-grid">
         <div>
           <div class="mapa">
-            <iframe title="Mapa de Supermercado 38 en Arraiján" src="https://maps.google.com/maps?q=8.93940,-79.64240&amp;z=16&amp;hl=es&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <iframe data-mapa title="Mapa de Supermercado 38 en Arraiján" src="https://maps.google.com/maps?q=8.93940,-79.64240&amp;z=16&amp;hl=es&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
           </div>
           <div class="acciones acciones-mapa">
-            <a class="boton" href="https://waze.com/ul?ll=8.9394%2C-79.6424&amp;navigate=yes" target="_blank" rel="noopener">Llegar con Waze</a>
-            <a class="boton" href="https://www.google.com/maps/dir/?api=1&amp;destination=8.9394%2C-79.6424" target="_blank" rel="noopener">Llegar con Google Maps</a>
+            <a class="boton" href="https://waze.com/ul?ll=8.9394%2C-79.6424&amp;navigate=yes" data-mapa="waze" target="_blank" rel="noopener">Llegar con Waze</a>
+            <a class="boton" href="https://www.google.com/maps/dir/?api=1&amp;destination=8.9394%2C-79.6424" data-mapa="google" target="_blank" rel="noopener">Llegar con Google Maps</a>
           </div>
         </div>
         <div>
           <h2>Datos de la tienda</h2>
           <ul class="datos">
-            <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.9-6.5-11a6.5 6.5 0 0 1 13 0c0 5.1-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span><strong>Calle principal, Arraiján, Panamá Oeste</strong>Código plus W9Q5+P2F <button class="enlace-boton copiar" type="button" data-copiar="W9Q5+P2F Arraiján">Copiar</button></span></li>
-            <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.6 4.3-2 1.3a12 12 0 0 0 6.1 6.1l1.3-2 4.3 1.6v2.6a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg><span><strong>Teléfono y WhatsApp</strong><a href="tel:+50767676813">Llamar al 6767-6813</a><br><a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener" data-wa-menu>Escribir por WhatsApp</a></span></li>
-            <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg><span><strong>Formas de pago</strong>Efectivo, tarjetas de débito y crédito, y pago sin contacto con el celular o la tarjeta.</span></li>
+            <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.9-6.5-11a6.5 6.5 0 0 1 13 0c0 5.1-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span><strong data-direccion>Calle principal, Arraiján, Panamá Oeste</strong>Código plus <span data-codigo-plus>W9Q5+P2F</span> <button class="enlace-boton copiar" type="button" data-copiar="W9Q5+P2F Arraiján">Copiar</button></span></li>
+            <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.6 4.3-2 1.3a12 12 0 0 0 6.1 6.1l1.3-2 4.3 1.6v2.6a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg><span><strong>Teléfono y WhatsApp</strong><a href="tel:+50767676813">Llamar al <span data-tel>6767-6813</span></a><br><a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener" data-wa-menu>Escribir por WhatsApp</a></span></li>
+            <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg><span><strong>Formas de pago</strong><span data-texto="pagos">Efectivo, tarjetas de débito y crédito, y pago sin contacto con el celular o la tarjeta.</span></span></li>
             <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M10 17V7.5h3a2.75 2.75 0 0 1 0 5.5h-3"/></svg><span><strong>Estacionamiento propio</strong>Justo frente a la entrada.</span></li>
           </ul>
           <p class="estado estado-grande" data-estado></p>
@@ -122,7 +122,7 @@
         <div class="preguntas">
           <details>
             <summary>¿Puedo preguntar si tienen algo antes de ir?</summary>
-            <p>Sí. Escríbenos al <a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20%C2%BFTienen%20" target="_blank" rel="noopener">WhatsApp 6767-6813</a> y te decimos si lo tenemos.</p>
+            <p>Sí. Escríbenos al <a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20%C2%BFTienen%20" target="_blank" rel="noopener">WhatsApp <span data-tel>6767-6813</span></a> y te decimos si lo tenemos.</p>
           </details>
           <details>
             <summary>¿Puedo dejar mi pedido listo para retirarlo?</summary>
@@ -130,7 +130,7 @@
           </details>
           <details>
             <summary>¿Qué formas de pago aceptan?</summary>
-            <p>Efectivo, tarjetas de débito y crédito, y pago sin contacto con el celular o la tarjeta.</p>
+            <p data-texto="pagos">Efectivo, tarjetas de débito y crédito, y pago sin contacto con el celular o la tarjeta.</p>
           </details>
         </div>
       </div>
@@ -151,14 +151,14 @@
         </div>
         <div>
           <h2>Dirección</h2>
-          <p>Calle principal, Arraiján, Panamá Oeste<br>Código plus W9Q5+P2F</p>
+          <p><span data-direccion>Calle principal, Arraiján, Panamá Oeste</span><br>Código plus <span data-codigo-plus>W9Q5+P2F</span></p>
           <p><a href="contacto.html">Cómo llegar</a></p>
         </div>
         <div>
           <h2>Escríbenos</h2>
           <div class="pie-enlaces">
-            <a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener" data-wa-menu>WhatsApp 6767-6813</a>
-            <a href="tel:+50767676813">Llamar al 6767-6813</a>
+            <a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener" data-wa-menu>WhatsApp <span data-tel>6767-6813</span></a>
+            <a href="tel:+50767676813">Llamar al <span data-tel>6767-6813</span></a>
           </div>
         </div>
         <div>
