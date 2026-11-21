@@ -2,140 +2,317 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#5d211a">
-  <meta name="description" content="Supermercado 38 en Arraiján: carnes frescas, panadería, ofertas, fiestas, mascotas y mucho más. Abierto todos los días.">
-  <meta property="og:title" content="Supermercado 38 | El súper de tu barrio">
-  <meta property="og:description" content="Todo para tu hogar, todos los días en Arraiján.">
-  <meta property="og:image" content="img/fachada.jpg">
-  <title>Supermercado 38 | Arraiján, Panamá Oeste</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Supermercado 38 en Arraiján | Carnes, panadería y abarrotes</title>
+  <meta name="description" content="Supermercado 38 (三發 M/S 38) en la calle principal de Arraiján: carnes, pan, abarrotes, verduras, fiestas y mascotas. Abierto todos los días de 7:00 a.m. a 10:00 p.m. Pide por WhatsApp al 6767-6813.">
+  <link rel="canonical" href="https://lulago3003.github.io/supermercado-38/">
+  <meta name="theme-color" content="#5a1a18">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PA">
+  <meta property="og:site_name" content="Supermercado 38">
+  <meta property="og:title" content="Supermercado 38 · Arraiján">
+  <meta property="og:description" content="Carnes, pan, abarrotes, fiestas y mascotas. Abierto todos los días de 7:00 a.m. a 10:00 p.m. Arma tu lista y pídela por WhatsApp.">
+  <meta property="og:url" content="https://lulago3003.github.io/supermercado-38/">
+  <meta property="og:image" content="https://lulago3003.github.io/supermercado-38/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fachada de Supermercado 38 con el letrero dorado 三發 M/S 38">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/icono-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Permanent+Marker&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@900&amp;display=swap&amp;text=%E4%B8%89%E7%99%BC">
   <link rel="stylesheet" href="styles.css">
+  <script src="datos.js" defer></script>
+  <script src="script.js" defer></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"GroceryStore","name":"Supermercado 38","telephone":"+50767676813","image":"img/fachada.jpg","address":{"@type":"PostalAddress","addressLocality":"Arraiján","addressRegion":"Panamá Oeste","addressCountry":"PA"},"openingHours":"Mo-Su 07:00-22:00","priceRange":"$"}
+  {
+    "@context": "https://schema.org",
+    "@type": "GroceryStore",
+    "name": "Supermercado 38",
+    "alternateName": "三發 M/S 38",
+    "url": "https://lulago3003.github.io/supermercado-38/",
+    "image": "https://lulago3003.github.io/supermercado-38/img/fachada.jpg",
+    "telephone": "+507 6767-6813",
+    "address": { "@type": "PostalAddress", "streetAddress": "Calle principal", "addressLocality": "Arraiján", "addressRegion": "Panamá Oeste", "addressCountry": "PA" },
+    "geo": { "@type": "GeoCoordinates", "latitude": 8.9394, "longitude": -79.6424 },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=8.9394%2C-79.6424",
+    "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "07:00", "closes": "22:00" }],
+    "paymentAccepted": "Efectivo, tarjeta de débito, tarjeta de crédito, pago sin contacto",
+    "priceRange": "$"
+  }
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#contenido">Ir al contenido</a>
-  <div class="sales-ribbon">¿Tienes una compra especial en mente? <a href="pedidos.html">Haz tu pedido rápido →</a></div><div class="announcement">Abiertos todos los días · 7:00 a.m. – 10:00 p.m. · Arraiján, Panamá Oeste</div>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html" aria-label="Supermercado 38, inicio"><span class="brand-mark">38</span><span><small>三發 · ARRAIJÁN</small>SUPERMERCADO 38</span></a>
-      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-      <nav class="nav-links" aria-label="Navegación principal">
-        <a data-page href="index.html">Inicio</a>
-        <a data-page href="ofertas.html">Ofertas</a><a data-page href="pedidos.html">Pedido rápido</a>
-        <a data-page href="departamentos.html">Departamentos</a>
-        <a data-page href="panaderia.html">Panadería</a>
-        <a data-page href="contacto.html">Contacto</a>
-        <a class="nav-cta" href="cotizacion.html">Cotiza por WhatsApp</a>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera-fila">
+      <a class="marca" href="index.html" aria-label="Supermercado 38, página de inicio"><span class="marca-hanzi" lang="zh-Hant">三發</span><span class="marca-ms">M/S 38</span></a>
+      <p class="estado" data-estado>Todos los días, 7:00 a.m. a 10:00 p.m.</p>
+      <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menú</button>
+      <nav id="menu" class="menu" aria-label="Principal">
+        <a href="departamentos.html">Departamentos</a>
+        <a href="panaderia.html">Panadería</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="contacto.html">Cómo llegar</a>
+        <a class="menu-lista" href="pedidos.html" data-lista-enlace>Mi lista <span class="contador" data-contador hidden>0</span></a>
       </nav>
     </div>
   </header>
 
-  <main id="contenido">
-    <section class="hero">
-      <div class="container sales-hero-grid">
-        <div class="hero-copy">
-          <p class="hero-kicker"><b></b> Atención por WhatsApp disponible</p>
-          <p class="eyebrow light">Supermercado 38 · Arraiján</p>
-          <h1>Resuelve tu compra <span>en un solo lugar.</span></h1>
-          <p class="intro">Del mercado de la semana a una fiesta completa: elige una opción, escríbenos y te ayudamos a llevarlo a casa. Fácil, cercano y sin perder tiempo.</p>
-          <div class="hero-actions"><a class="button gold" href="pedidos.html">Hacer pedido rápido</a><a class="button ghost" href="cotizacion.html">Cotizar compra especial</a></div>
-          <div class="hero-proof"><span>✓ Abiertos todos los días</span><span>✓ Pago con tarjeta y NFC</span><span>✓ Estacionamiento propio</span></div>
+  <main id="contenido" class="portada">
+    <section class="fachada" aria-labelledby="titulo-tienda">
+      <div class="lamina">
+        <div class="focos" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <div class="contenedor lamina-contenido">
+          <h1 id="titulo-tienda" class="letrero">
+            <span class="letrero-hanzi" lang="zh-Hant" aria-hidden="true">三發</span>
+            <span class="letrero-ms" aria-hidden="true">M/S 38</span>
+            <span class="sr-only">Supermercado 38 en Arraiján</span>
+          </h1>
+          <p class="lamina-sub">Supermercado en la calle principal de Arraiján</p>
         </div>
-        <aside class="hero-order-card">
-          <p class="eyebrow">¿Qué necesitas hoy?</p><h2>Empieza por aquí.</h2><p>Selecciona un motivo y te llevamos directo a una consulta por WhatsApp.</p>
-          <ul class="hero-order-list"><li><a href="pedidos.html"><span>🥩 Asado en casa</span><span>→</span></a></li><li><a href="pedidos.html"><span>🎈 Fiesta lista</span><span>→</span></a></li><li><a href="pedidos.html"><span>🥐 Panadería</span><span>→</span></a></li><li><a href="cotizacion.html"><span>✦ Pedido especial</span><span>→</span></a></li></ul>
-          <p class="hero-card-foot">Consulta disponibilidad y arma tu pedido con nosotros.</p>
-        </aside>
+      </div>
+      <div class="alero" aria-hidden="true"></div>
+      <div class="pared">
+        <div class="contenedor">
+          <div class="pared-texto">
+            <p>Carnes, pan, abarrotes, verduras, cosas para fiestas y comida para tu mascota. Abrimos <span data-horario-resumen>todos los días de 7:00 a.m. a 10:00 p.m.</span></p>
+          </div>
+          <nav class="frente" aria-label="Entra a la tienda">
+            <a class="puerta" href="pedidos.html" aria-label="Arma tu lista y mándala por WhatsApp">
+              <span class="puerta-letrero" data-estado>Abierto todos los días</span>
+              <span class="puerta-titulo">Arma tu lista</span>
+              <span class="puerta-texto">Elige lo que necesitas y envíalo por WhatsApp.</span>
+              <span class="boton">Empezar mi lista</span>
+            </a>
+            <div class="vitrinas">
+              <a class="vitrina" href="panaderia.html">
+                <span class="cartel cartel-panaderia">Panadería</span>
+                <picture><source type="image/webp" srcset="img/web/panaderia-600.webp"><img src="img/panaderia.jpg" alt="" width="600" height="450"></picture>
+              </a>
+              <a class="vitrina" href="departamentos.html#fiestas">
+                <span class="cartel cartel-fiestas">Fiestas</span>
+                <picture><source type="image/webp" srcset="img/web/fiestas-600.webp"><img src="img/fiestas.jpg" alt="" width="600" height="450"></picture>
+              </a>
+              <a class="vitrina" href="departamentos.html#variedades">
+                <span class="cartel cartel-variedades">Variedades</span>
+                <picture><source type="image/webp" srcset="img/web/variedades-600.webp"><img src="img/variedades.jpg" alt="" width="600" height="450"></picture>
+              </a>
+              <a class="vitrina" href="departamentos.html#carniceria">
+                <span class="cartel cartel-carnes">Carnes</span>
+                <picture><source type="image/webp" srcset="img/web/carniceria-600.webp"><img src="img/carniceria.jpg" alt="" width="600" height="399"></picture>
+              </a>
+              <a class="vitrina" href="departamentos.html#mascotas">
+                <span class="cartel cartel-mascotas">Mascotas</span>
+                <picture><source type="image/webp" srcset="img/web/mascotas-600.webp"><img src="img/mascotas.jpg" alt="" width="600" height="800"></picture>
+              </a>
+              <a class="vitrina vitrina-texto" href="departamentos.html#abarrotes">
+                <span class="cartel cartel-abarrotes">Abarrotes</span>
+                <span class="vitrina-lista"><span>Lácteos</span><span>Verduras frescas</span><span>Sedería</span><span>Embutidos</span><span>Farmacia</span></span>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="parqueo">
+        <div class="contenedor parqueo-contenido">
+          <p class="parqueo-nota"><b aria-hidden="true">P</b> Estacionamiento propio frente a la entrada</p>
+          <div class="acciones">
+            <a class="boton boton-claro" href="https://waze.com/ul?ll=8.9394%2C-79.6424&amp;navigate=yes" target="_blank" rel="noopener">Llegar con Waze</a>
+            <a class="boton boton-claro" href="https://www.google.com/maps/dir/?api=1&amp;destination=8.9394%2C-79.6424" target="_blank" rel="noopener">Llegar con Google Maps</a>
+            <a class="boton boton-claro" href="tel:+50767676813">Llamar al 6767-6813</a>
+          </div>
+        </div>
       </div>
     </section>
-    <div class="conversion-strip container"><div class="conversion-grid"><div class="conversion-unit primary"><span class="conv-icon">✦</span><div><strong>¿Tienes una lista?</strong><span>Envía tu solicitud y recibe atención personalizada.</span><a href="cotizacion.html">Crear cotización →</a></div></div><div class="conversion-unit"><span class="conv-icon">◷</span><div><strong>Compra cuando te convenga</strong><span>Todos los días, 7 a.m. – 10 p.m.</span></div></div><div class="conversion-unit"><span class="conv-icon">◔</span><div><strong>¿Prefieres hablar?</strong><span>WhatsApp y teléfono a un toque.</span></div></div></div></div>
 
-    <div class="quick-links container" data-reveal>
-      <div class="quick-grid">
-        <a class="quick-card" href="ofertas.html"><span class="icon">✦</span><strong>Ofertas semanales</strong><span>Buenos precios para tu compra.</span></a>
-        <a class="quick-card" href="departamentos.html"><span class="icon">▦</span><strong>Todo en un lugar</strong><span>Descubre nuestros departamentos.</span></a>
-        <a class="quick-card" href="panaderia.html"><span class="icon">◒</span><strong>Pan recién hecho</strong><span>Recién horneado para tu mesa.</span></a>
-        <a class="quick-card" href="pedidos.html"><span class="icon">✦</span><strong>Pedido rápido</strong><span>Elige un paquete y consulta.</span></a>
-      </div>
-    </div>
-
-    <section class="section">
-      <div class="container feature-grid">
-        <div class="photo-stack" data-reveal>
-          <img src="img/carniceria.jpg" alt="Vitrina de carnes frescas en Supermercado 38">
-          <img src="img/panaderia.jpg" alt="Panadería y repostería del supermercado">
-          <span class="eyecatcher">Fresco todos los días<small>Calidad que se nota</small></span>
+    <section class="seccion seccion-blanca" aria-labelledby="t-pizarra">
+      <div class="contenedor">
+        <div class="encabezado-fila">
+          <div class="encabezado">
+            <h2 id="t-pizarra">Precios de la pizarra</h2>
+            <p>Los mismos que ves en la tienda. Toca + para sumarlos a tu lista y te decimos el total por WhatsApp.</p>
+          </div>
+          <a class="boton boton-secundario" href="panaderia.html">Ver la panadería</a>
         </div>
-        <div data-reveal>
-          <p class="eyebrow">Más que una compra</p>
-          <h2 class="display">La parada que <em>resuelve tu día.</em></h2>
-          <p class="lead">Ven por lo esencial y descubre todo lo que necesitas para la casa, una celebración o tu mascota. Te atendemos cerca, con variedad y con la confianza de siempre.</p>
-          <ul class="check-list">
-            <li>Carnicería con cortes frescos todos los días.</li>
-            <li>Panadería, abarrotes, lácteos, verduras y embutidos.</li>
-            <li>Fiestas, variedades, sedería, farmacia y mascotas.</li>
+        <div class="pizarras">
+          <div class="pizarra" data-pizarra="panaderia">
+            <h3 class="pizarra-titulo">Panadería</h3>
+            <ul class="pizarra-lista"></ul>
+            <p class="pizarra-pie">Precio por unidad, en balboas.</p>
+          </div>
+          <div class="pizarras-lado">
+            <div class="cartulina" data-pizarra="mascotas">
+              <h3 class="pizarra-titulo">Comida para perro</h3>
+              <ul class="pizarra-lista"></ul>
+            </div>
+            <div class="bolsa" data-resumen>
+              <p data-resumen-texto>Toca + en la pizarra para empezar tu lista.</p>
+              <a class="boton" href="pedidos.html#tu-lista">Revisar y enviar</a>
+            </div>
+          </div>
+        </div>
+        <noscript><p class="nota">Para ver los precios y armar tu lista, activa JavaScript o escríbenos por WhatsApp al 6767-6813.</p></noscript>
+        <p class="nota">Pueden cambiar sin aviso. El precio final es el de caja.</p>
+      </div>
+    </section>
+
+    <section class="seccion" aria-labelledby="t-ofertas">
+      <div class="contenedor">
+        <div class="encabezado-fila">
+          <div class="encabezado">
+            <h2 id="t-ofertas">Ofertas de la semana</h2>
+          </div>
+          <a class="boton boton-secundario" href="ofertas.html">Ver todas las ofertas</a>
+        </div>
+        <p class="aviso" data-ofertas-nota></p>
+        <div class="ofertas" data-ofertas data-limite="4"></div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-arena" aria-labelledby="t-lista">
+      <div class="contenedor dos-columnas">
+        <div>
+          <h2 id="t-lista">Pide por WhatsApp sin escribir todo</h2>
+          <ol class="pasos">
+            <li><span><strong>Agrega lo que necesitas.</strong> Desde la pizarra, las ofertas o escribiendo el producto.</span></li>
+            <li><span><strong>Revisa tu lista.</strong> Cambia cantidades y cuéntanos si pasas a retirarla.</span></li>
+            <li><span><strong>Envíala por WhatsApp.</strong> La tienda te confirma disponibilidad y total antes de prepararla.</span></li>
+          </ol>
+          <a class="boton" href="pedidos.html">Arma tu lista</a>
+        </div>
+        <figure class="chat">
+          <div class="chat-cabeza"><span class="chat-avatar" aria-hidden="true">38</span><div><strong>Supermercado 38</strong><small>WhatsApp 6767-6813</small></div></div>
+          <div class="chat-cuerpo"><p class="burbuja">Hola, Supermercado 38. Quiero hacer este pedido:
+
+• 10 Pan de agua (B/. 0.15 c/u)
+• 1 Pet Master 20 kg (B/. 20.00)
+• 1 Arroz
+• 2 Plátano
+
+Lo paso a retirar a la tienda.
+¿Me confirman disponibilidad y el total? Gracias.<span class="burbuja-hora">10:24 a.m.</span></p></div>
+          <figcaption>Así le llega tu lista a la tienda.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="seccion seccion-blanca" aria-labelledby="t-visita">
+      <div class="contenedor visita-grid">
+        <div>
+          <h2 id="t-visita">Ven a la tienda</h2>
+          <ul class="datos">
+            <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.9-6.5-11a6.5 6.5 0 0 1 13 0c0 5.1-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span><strong>Calle principal, Arraiján, Panamá Oeste</strong>Código plus W9Q5+P2F <button class="enlace-boton copiar" type="button" data-copiar="W9Q5+P2F Arraiján">Copiar</button></span></li>
+            <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg><span><strong>Formas de pago</strong>Efectivo, tarjetas de débito y crédito, y pago sin contacto con el celular o la tarjeta.</span></li>
+            <li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M10 17V7.5h3a2.75 2.75 0 0 1 0 5.5h-3"/></svg><span><strong>Estacionamiento propio</strong>Justo frente a la entrada.</span></li>
           </ul>
-          <p><a class="text-link" href="departamentos.html">Conoce todo lo que encuentras aquí →</a></p>
+          <div class="acciones">
+            <a class="boton" href="contacto.html">Ver mapa y cómo llegar</a>
+            <a class="boton boton-secundario" href="tel:+50767676813">Llamar al 6767-6813</a>
+          </div>
+        </div>
+        <div>
+          <figure class="foto-fachada">
+            <picture>
+              <source type="image/webp" srcset="img/web/fachada-1200.webp 1200w, img/web/fachada-1800.webp 1800w" sizes="(min-width: 900px) 38rem, 100vw">
+              <img src="img/fachada.jpg" alt="Fachada de la tienda: lámina plateada con el letrero dorado 三發 M/S 38, vitrinas con afiches de carnes, abarrotes y verduras, y estacionamiento al frente" width="1800" height="821" loading="lazy" decoding="async">
+            </picture>
+            <figcaption>Busca el letrero dorado <b lang="zh-Hant">三發</b> M/S 38.</figcaption>
+          </figure>
+          <table class="horario horario-separado" data-horario>
+            <caption>Horario</caption>
+            <tbody><tr><th scope="row">Todos los días</th><td>7:00 a.m. a 10:00 p.m.</td></tr></tbody>
+          </table>
         </div>
       </div>
     </section>
 
-    <section class="section tint">
-      <div class="container">
-        <div class="section-heading" data-reveal>
-          <div><p class="eyebrow">Explora la tienda</p><h2 class="display">Un pasillo para <em>cada necesidad.</em></h2></div>
-          <a class="text-link" href="departamentos.html">Ver todos los departamentos →</a>
-        </div>
-        <div class="department-grid">
-          <a class="dept-card large" href="departamentos.html#carniceria" data-reveal><img src="img/carniceria.jpg" alt="Carnicería de Supermercado 38"><span class="dept-card-content"><span class="tag">Favorito del barrio</span><h3>Carnicería</h3><p>Cortes frescos para cada receta.</p></span></a>
-          <a class="dept-card tall" href="panaderia.html" data-reveal><img src="img/panaderia.jpg" alt="Panadería del Supermercado 38"><span class="dept-card-content"><span class="tag">Recién horneado</span><h3>Panadería</h3><p>Pan, dulces y repostería todos los días.</p></span></a>
-          <a class="dept-card" href="departamentos.html#fiestas" data-reveal><img src="img/fiestas.jpg" alt="Productos para fiestas"><span class="dept-card-content"><h3>Fiestas</h3><p>Hazlo especial.</p></span></a>
-          <a class="dept-card" href="departamentos.html#mascotas" data-reveal><img src="img/mascotas.jpg" alt="Alimentos para mascotas"><span class="dept-card-content"><h3>Mascotas</h3><p>Porque también son familia.</p></span></a>
-          <a class="dept-card simple" href="departamentos.html#variedades" data-reveal><span class="dept-card-content"><span class="tag">Para descubrir</span><h3>Variedades y más</h3><p>Juguetes, accesorios, sedería y artículos para el hogar.</p></span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section quote-splash">
-      <div class="container quote-splash-inner" data-reveal>
-        <div><p class="eyebrow light">Para compras especiales</p><h2 class="display">¿Un evento, un pedido o una compra grande? <em>Hablemos.</em></h2><p>Prepara tu lista, selecciona las áreas que te interesan y envía una solicitud clara al equipo de Supermercado 38 en un solo mensaje.</p><div class="hero-actions"><a class="button gold" href="cotizacion.html">Crear una cotización</a><a class="button ghost" href="https://wa.me/50767676813?text=Hola%2C%20quiero%20consultar%20sobre%20un%20pedido%20especial." target="_blank" rel="noopener">Consultar ahora</a></div></div>
-        <div class="quote-badge">38<small>Atención<br>personal</small></div>
-      </div>
-    </section>
-
-    <section class="section tint">
-      <div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow">Compra más fácil</p><h2 class="display">Elige un paquete, <em>escríbenos y listo.</em></h2></div><a class="text-link" href="pedidos.html">Ver pedido rápido →</a></div>
-      <div class="kit-grid">
-        <article class="kit-card" data-reveal><img src="img/carniceria.jpg" alt="Carnes frescas para asado"><span class="kit-pill">Para compartir</span><h3>Asado en casa</h3><p>Una consulta rápida para tu próxima reunión.</p><button class="button gold" data-direct-order="Asado en casa">Me interesa</button></article>
-        <article class="kit-card" data-reveal><img src="img/fiestas.jpg" alt="Artículos para fiestas"><span class="kit-pill">Celebra mejor</span><h3>Fiesta lista</h3><p>Todo para empezar a preparar una ocasión especial.</p><button class="button gold" data-direct-order="Fiesta lista">Me interesa</button></article>
-        <article class="kit-card" data-reveal><img src="img/panaderia.jpg" alt="Panadería de Supermercado 38"><span class="kit-pill">Recién horneado</span><h3>Mesa de panadería</h3><p>Pan y dulces para compartir en casa o en el trabajo.</p><button class="button gold" data-direct-order="Mesa de panadería">Me interesa</button></article>
-        <article class="kit-card" data-reveal><img src="img/mascotas.jpg" alt="Productos para mascotas"><span class="kit-pill">Para consentir</span><h3>Mascota feliz</h3><p>Consulta una selección para tu mejor compañero.</p><button class="button gold" data-direct-order="Mascota feliz">Me interesa</button></article>
-      </div></div>
-    </section>
-
-    <section class="section offer-band">
-      <div class="container">
-        <div class="offer-head" data-reveal><div><p class="eyebrow light">Ahorra esta semana</p><h2 class="display">Ofertas que hacen rendir <em>tu compra.</em></h2></div><a class="text-link" href="ofertas.html">Ver todas las ofertas →</a></div>
-        <div class="offer-row">
-          <article class="offer-mini" data-reveal><small>Oferta</small><h3>Arroz nacional</h3><strong>B/. 2.75</strong></article>
-          <article class="offer-mini" data-reveal><small>Oferta</small><h3>Pollo entero</h3><strong>B/. 0.99 <small>lb</small></strong></article>
-          <article class="offer-mini" data-reveal><small>Oferta</small><h3>Aceite vegetal</h3><strong>B/. 2.10</strong></article>
-          <article class="offer-mini" data-reveal><small>Oferta</small><h3>Pet Master 20 kg</h3><strong>B/. 20.00</strong></article>
+    <section class="seccion" aria-labelledby="t-preguntas">
+      <div class="contenedor">
+        <div class="encabezado"><h2 id="t-preguntas">Preguntas frecuentes</h2></div>
+        <div class="preguntas">
+          <details>
+            <summary>¿A qué hora abren y cierran?</summary>
+            <p>Abrimos <span data-horario-resumen>todos los días de 7:00 a.m. a 10:00 p.m.</span>, de lunes a domingo.</p>
+          </details>
+          <details>
+            <summary>¿Puedo hacer mi pedido por WhatsApp?</summary>
+            <p>Sí. <a href="pedidos.html">Arma tu lista</a> en esta página o escríbenos al 6767-6813. Te confirmamos disponibilidad y el total antes de prepararla.</p>
+          </details>
+          <details>
+            <summary>¿Qué formas de pago aceptan?</summary>
+            <p>Efectivo, tarjetas de débito y crédito, y pago sin contacto con el celular o la tarjeta.</p>
+          </details>
+          <details>
+            <summary>¿Dónde me estaciono?</summary>
+            <p>Tenemos estacionamiento propio justo frente a la entrada.</p>
+          </details>
+          <details>
+            <summary>¿Tienen cosas para cumpleaños?</summary>
+            <p>Sí: velas de número, velitas, globos, letreros de Feliz cumpleaños, toppers para pastel, gorritos y más. Mira el departamento de <a href="departamentos.html#fiestas">fiestas</a>.</p>
+          </details>
+          <details>
+            <summary>¿Los precios de la página son los de la tienda?</summary>
+            <p>Los de la pizarra son los mismos de la tienda, pero pueden cambiar sin aviso. El precio final siempre es el de caja.</p>
+          </details>
         </div>
       </div>
-    </section>
-
-    <section class="section">
-      <figure class="testimonial" data-reveal><div class="quote-mark">“</div><div><blockquote>“Buenos productos frescos, precios accesibles y siempre encuentro lo que necesito.”</blockquote><figcaption><span class="stars">★★★★★</span> · Opinión de un vecino de Arraiján</figcaption></div></figure>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark">38</span><span><small>三發 · ARRAIJÁN</small>SUPERMERCADO 38</span></a><p>Tu tienda de confianza para resolver el día a día, en el corazón de Arraiján.</p></div><div><h2 class="footer-title">Explora</h2><div class="footer-links"><a href="ofertas.html">Ofertas de la semana</a><a href="departamentos.html">Departamentos</a><a href="panaderia.html">Panadería</a><a href="cotizacion.html">Cotiza por WhatsApp</a></div></div><div><h2 class="footer-title">Visítanos</h2><div class="footer-links"><a href="contacto.html">Cómo llegar</a><a href="tel:+50767676813">6767-6813</a><a href="https://wa.me/50767676813" target="_blank" rel="noopener">WhatsApp</a></div></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> Supermercado 38. Todos los derechos reservados.</span><span>Arraiján, Panamá Oeste · Todos los días 7 a.m. – 10 p.m.</span></div></div>
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie-grid">
+        <div>
+          <a class="marca" href="index.html" aria-label="Supermercado 38, página de inicio"><span class="marca-hanzi" lang="zh-Hant">三發</span><span class="marca-ms">M/S 38</span></a>
+          <p>Supermercado 38: carnes, pan, abarrotes, fiestas y mascotas en Arraiján.</p>
+        </div>
+        <div>
+          <h2>Horario</h2>
+          <p class="mayuscula" data-horario-resumen>Todos los días de 7:00 a.m. a 10:00 p.m.</p>
+          <p class="estado" data-estado></p>
+        </div>
+        <div>
+          <h2>Dirección</h2>
+          <p>Calle principal, Arraiján, Panamá Oeste<br>Código plus W9Q5+P2F</p>
+          <p><a href="contacto.html">Cómo llegar</a></p>
+        </div>
+        <div>
+          <h2>Escríbenos</h2>
+          <div class="pie-enlaces">
+            <a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener">WhatsApp 6767-6813</a>
+            <a href="tel:+50767676813">Llamar al 6767-6813</a>
+          </div>
+        </div>
+        <div>
+          <h2>En la página</h2>
+          <nav class="pie-enlaces" aria-label="Todas las páginas">
+            <a href="index.html">Inicio</a>
+            <a href="departamentos.html">Departamentos</a>
+            <a href="panaderia.html">Panadería</a>
+            <a href="ofertas.html">Ofertas</a>
+            <a href="pedidos.html">Mi lista</a>
+            <a href="cotizacion.html">Pedidos especiales</a>
+            <a href="contacto.html">Cómo llegar</a>
+          </nav>
+        </div>
+      </div>
+      <div class="pie-final">
+        <p>© <span data-anio>2026</span> Supermercado 38, Arraiján.</p>
+        <p>Precios en balboas. El precio final es el de caja.</p>
+      </div>
+    </div>
   </footer>
-  <a class="whatsapp" href="https://wa.me/50767676813?text=Hola%2C%20les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">◔</a>
-  <script src="script.js"></script>
+
+  <nav class="barra-movil" aria-label="Acciones rápidas">
+    <a class="barra-wa" href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 0 1-12.6 7.45L3.5 20.5l1.1-4.2A8.5 8.5 0 1 1 20.5 12z"/></svg>WhatsApp</a>
+    <a href="tel:+50767676813"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.6 4.3-2 1.3a12 12 0 0 0 6.1 6.1l1.3-2 4.3 1.6v2.6a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg>Llamar</a>
+    <a href="contacto.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.9-6.5-11a6.5 6.5 0 0 1 13 0c0 5.1-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Cómo llegar</a>
+    <a href="pedidos.html#tu-lista" data-lista-enlace><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5h17l-1.7 8.7a2 2 0 0 1-2 1.6H7.2a2 2 0 0 1-2-1.6z"/><path d="M8.5 9.5l3-5.5M15.5 9.5l-3-5.5M9.5 13.5v3M14.5 13.5v3"/></svg>Mi lista <span class="contador" data-contador hidden>0</span></a>
+  </nav>
 </body>
 </html>

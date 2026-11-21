@@ -2,63 +2,177 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#5d211a">
-  <meta name="description" content="Solicita una cotización para tu compra, evento o pedido especial en Supermercado 38.">
-  <title>Cotiza por WhatsApp | Supermercado 38</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pedidos especiales para eventos y negocios | Supermercado 38</title>
+  <meta name="description" content="¿Un cumpleaños, una reunión o compras para tu negocio? Cuéntale a Supermercado 38 qué necesitas y recibe respuesta por WhatsApp con disponibilidad y precio.">
+  <link rel="canonical" href="https://lulago3003.github.io/supermercado-38/cotizacion.html">
+  <meta name="theme-color" content="#5a1a18">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PA">
+  <meta property="og:site_name" content="Supermercado 38">
+  <meta property="og:title" content="Pedidos especiales · Supermercado 38, Arraiján">
+  <meta property="og:description" content="Para cumpleaños, reuniones o tu negocio: cuéntanos qué necesitas y te respondemos por WhatsApp.">
+  <meta property="og:url" content="https://lulago3003.github.io/supermercado-38/cotizacion.html">
+  <meta property="og:image" content="https://lulago3003.github.io/supermercado-38/img/fiestas.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/icono-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Permanent+Marker&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@900&amp;display=swap&amp;text=%E4%B8%89%E7%99%BC">
   <link rel="stylesheet" href="styles.css">
+  <script src="datos.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#contenido">Ir al contenido</a>
-  <div class="announcement">Abiertos todos los días · 7:00 a.m. – 10:00 p.m. · Arraiján, Panamá Oeste</div>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html" aria-label="Supermercado 38, inicio"><span class="brand-mark">38</span><span><small>三發 · ARRAIJÁN</small>SUPERMERCADO 38</span></a>
-      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-      <nav class="nav-links" aria-label="Navegación principal">
-        <a data-page href="index.html">Inicio</a><a data-page href="ofertas.html">Ofertas</a><a data-page href="departamentos.html">Departamentos</a><a data-page href="panaderia.html">Panadería</a><a data-page href="contacto.html">Contacto</a>
-        <a class="nav-cta" href="cotizacion.html">Cotiza por WhatsApp</a>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera-fila">
+      <a class="marca" href="index.html" aria-label="Supermercado 38, página de inicio"><span class="marca-hanzi" lang="zh-Hant">三發</span><span class="marca-ms">M/S 38</span></a>
+      <p class="estado" data-estado>Todos los días, 7:00 a.m. a 10:00 p.m.</p>
+      <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menú</button>
+      <nav id="menu" class="menu" aria-label="Principal">
+        <a href="departamentos.html">Departamentos</a>
+        <a href="panaderia.html">Panadería</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="contacto.html">Cómo llegar</a>
+        <a class="menu-lista" href="pedidos.html" data-lista-enlace>Mi lista <span class="contador" data-contador hidden>0</span></a>
       </nav>
     </div>
   </header>
+
   <main id="contenido">
-    <section class="page-hero has-image" style="--hero-image:url('img/fiestas.jpg')">
-      <div class="container page-hero-content">
-        <p class="crumbs"><a href="index.html">Inicio</a> / Cotización</p>
-        <p class="eyebrow light">Atención más personal</p>
-        <h1 class="display">Cuéntanos qué necesitas <em>y te ayudamos.</em></h1>
-        <p class="lead">Prepara tu consulta para una compra especial, un evento o productos para tu negocio. Al enviarla se abrirá WhatsApp con los detalles organizados.</p>
-      </div>
+    <section class="letrero-pagina" aria-labelledby="titulo">
+      <div class="lamina"><div class="contenedor lamina-contenido"><h1 id="titulo" class="letrero-titulo">Pedidos especiales</h1></div></div>
+      <div class="alero" aria-hidden="true"></div>
     </section>
-    <section class="section">
-      <div class="container quote-layout">
-        <aside class="quote-aside" data-reveal>
-          <p class="eyebrow light">Así funciona</p>
-          <h2>Tu cotización, sin complicaciones.</h2>
-          <p>En menos de un minuto puedes enviar una solicitud clara al equipo de la tienda.</p>
-          <ol class="quote-steps"><li><b>1</b><span>Cuéntanos qué tipo de compra necesitas.</span></li><li><b>2</b><span>Elige las categorías que te interesan.</span></li><li><b>3</b><span>Agrega cantidades, presupuesto o fecha.</span></li><li><b>4</b><span>Envía el resumen directamente por WhatsApp.</span></li></ol>
-        </aside>
-        <form class="quote-form" data-quote-form>
-          <h2>Arma tu solicitud</h2>
-          <p>No es una compra automática: es una forma rápida de que podamos atenderte mejor.</p>
+
+    <div class="contenedor intro">
+      <p>¿Un cumpleaños, una reunión o compras para tu negocio? Cuéntanos qué necesitas y te respondemos por WhatsApp con disponibilidad y precio. Para la compra del día usa <a href="pedidos.html">Mi lista</a>.</p>
+    </div>
+
+    <div class="seccion">
+      <div class="contenedor especial-grid">
+        <form class="form-caja" data-especial>
+          <h2>Cuéntanos qué necesitas</h2>
           <div class="form-grid">
-            <div class="form-field"><label for="nombre">Tu nombre *</label><input id="nombre" name="nombre" autocomplete="name" required placeholder="Ej. María González"></div>
-            <div class="form-field"><label for="contacto">Teléfono o correo *</label><input id="contacto" name="contacto" required placeholder="Ej. 6000-0000"></div>
-            <div class="form-field"><label for="tipo">¿Para qué lo necesitas? *</label><select id="tipo" name="tipo" required><option value="">Selecciona una opción</option><option>Compra para el hogar</option><option>Celebración o cumpleaños</option><option>Pedido para negocio</option><option>Compra para mascota</option><option>Otro pedido especial</option></select></div>
-            <div class="form-field"><label for="presupuesto">Presupuesto aproximado</label><select id="presupuesto" name="presupuesto"><option value="">Prefiero conversarlo</option><option>Hasta B/. 25</option><option>De B/. 25 a B/. 75</option><option>De B/. 75 a B/. 150</option><option>Más de B/. 150</option></select></div>
-            <fieldset class="form-set"><legend>¿Qué te interesa cotizar?</legend><div class="check-options"><label class="check-option"><input type="checkbox" name="interes" value="Abarrotes"><span>Abarrotes</span></label><label class="check-option"><input type="checkbox" name="interes" value="Carnicería"><span>Carnicería</span></label><label class="check-option"><input type="checkbox" name="interes" value="Panadería"><span>Panadería</span></label><label class="check-option"><input type="checkbox" name="interes" value="Fiestas"><span>Fiestas</span></label><label class="check-option"><input type="checkbox" name="interes" value="Mascotas"><span>Mascotas</span></label><label class="check-option"><input type="checkbox" name="interes" value="Variedades"><span>Variedades</span></label></div></fieldset>
-            <div class="form-field"><label for="fecha">Fecha estimada</label><input id="fecha" name="fecha" type="date"></div>
-            <div class="form-field wide"><label for="detalle">Lista, cantidades o detalles</label><textarea id="detalle" name="detalle" placeholder="Ej. 30 bolsitas para cumpleaños, globos azules y blancos, velitas número 8..."></textarea></div>
+            <div class="campo">
+              <label for="nombre">Tu nombre</label>
+              <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+            </div>
+            <div class="campo">
+              <label for="contacto">Teléfono <small>(opcional)</small></label>
+              <input id="contacto" name="contacto" type="tel" autocomplete="tel" inputmode="tel" placeholder="6000-0000">
+            </div>
+            <div class="campo">
+              <label for="tipo">¿Para qué es?</label>
+              <select id="tipo" name="tipo" required>
+                <option value="">Elige una opción</option>
+                <option>Cumpleaños o celebración</option>
+                <option>Reunión o evento</option>
+                <option>Compra para mi negocio</option>
+                <option>Compra grande para la casa</option>
+                <option>Otra cosa</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="fecha">¿Para cuándo? <small>(opcional)</small></label>
+              <input id="fecha" name="fecha" type="date">
+            </div>
+            <fieldset class="grupo-campos ancho">
+              <legend>¿Qué te interesa?</legend>
+              <div class="casillas">
+                <label class="opcion"><input type="checkbox" name="interes" value="Abarrotes"> Abarrotes</label>
+                <label class="opcion"><input type="checkbox" name="interes" value="Carnicería"> Carnicería</label>
+                <label class="opcion"><input type="checkbox" name="interes" value="Panadería"> Panadería</label>
+                <label class="opcion"><input type="checkbox" name="interes" value="Verduras"> Verduras</label>
+                <label class="opcion"><input type="checkbox" name="interes" value="Fiestas"> Fiestas</label>
+                <label class="opcion"><input type="checkbox" name="interes" value="Mascotas"> Mascotas</label>
+                <label class="opcion"><input type="checkbox" name="interes" value="Variedades"> Variedades</label>
+                <label class="opcion"><input type="checkbox" name="interes" value="Limpieza"> Limpieza</label>
+              </div>
+            </fieldset>
+            <div class="campo">
+              <label for="presupuesto">Presupuesto <small>(opcional)</small></label>
+              <select id="presupuesto" name="presupuesto">
+                <option value="">Prefiero conversarlo</option>
+                <option>Hasta B/. 25</option>
+                <option>De B/. 25 a B/. 75</option>
+                <option>De B/. 75 a B/. 150</option>
+                <option>Más de B/. 150</option>
+              </select>
+            </div>
+            <div class="campo ancho">
+              <label for="detalle">Lista o detalles</label>
+              <textarea id="detalle" name="detalle" rows="5" placeholder="Ej.: 30 bolsitas para cumpleaños, globos azules y blancos, velas del número 8…"></textarea>
+            </div>
           </div>
-          <button class="button" type="submit" style="margin-top:1.4rem">Preparar y enviar por WhatsApp</button>
-          <div class="quote-summary" data-quote-summary aria-live="polite"></div>
-          <p class="form-legal">Al continuar, se abrirá WhatsApp para enviar la solicitud al número de Supermercado 38. La disponibilidad y el precio final se confirman con la tienda.</p>
+          <a class="boton boton-wa boton-ancho" data-especial-enviar href="#" target="_blank" rel="noopener"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 0 1-12.6 7.45L3.5 20.5l1.1-4.2A8.5 8.5 0 1 1 20.5 12z"/></svg>Enviar solicitud por WhatsApp</a>
+          <p class="form-legal">Se abre WhatsApp con tu mensaje listo para el 6767-6813. Nada se envía hasta que tú toques Enviar.</p>
         </form>
+
+        <div class="especial-lado">
+          <figure class="chat">
+            <div class="chat-cabeza"><span class="chat-avatar" aria-hidden="true">38</span><div><strong>Supermercado 38</strong><small>WhatsApp 6767-6813</small></div></div>
+            <div class="chat-cuerpo"><p class="burbuja"><span data-especial-mensaje>Hola, Supermercado 38. Quiero hacer un pedido especial.</span><span class="burbuja-hora">ahora</span></p></div>
+            <figcaption>Así le llega tu solicitud a la tienda. Se actualiza mientras escribes.</figcaption>
+          </figure>
+        </div>
       </div>
-    </section>
-    <section class="section tint"><div class="container"><p class="eyebrow" data-reveal>Un plus para tu día</p><h2 class="display" data-reveal>También puedes visitarnos <em>cuando quieras.</em></h2><div class="benefit-grid"><article class="benefit" data-reveal><span class="benefit-mark">◷</span><h3>Horario amplio</h3><p>Estamos abiertos todos los días, de 7:00 a.m. a 10:00 p.m.</p></article><article class="benefit" data-reveal><span class="benefit-mark">⌖</span><h3>Fácil de encontrar</h3><p>Estacionamiento propio y ubicación céntrica en Arraiján.</p></article><article class="benefit" data-reveal><span class="benefit-mark">✦</span><h3>Atención cercana</h3><p>Escríbenos o acércate: estamos para ayudarte a resolver tu compra.</p></article></div></div></section>
+    </div>
   </main>
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark">38</span><span><small>三發 · ARRAIJÁN</small>SUPERMERCADO 38</span></a><p>Tu tienda de confianza para resolver el día a día, en el corazón de Arraiján.</p></div><div><h2 class="footer-title">Explora</h2><div class="footer-links"><a href="ofertas.html">Ofertas de la semana</a><a href="departamentos.html">Departamentos</a><a href="panaderia.html">Panadería</a></div></div><div><h2 class="footer-title">Visítanos</h2><div class="footer-links"><a href="contacto.html">Cómo llegar</a><a href="tel:+50767676813">6767-6813</a><a href="https://wa.me/50767676813" target="_blank" rel="noopener">WhatsApp</a></div></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> Supermercado 38.</span><span>Arraiján, Panamá Oeste · Todos los días 7 a.m. – 10 p.m.</span></div></div></footer>
-  <a class="whatsapp" href="https://wa.me/50767676813?text=Hola%2C%20les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">◔</a>
-  <script src="script.js"></script>
-</body></html>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie-grid">
+        <div>
+          <a class="marca" href="index.html" aria-label="Supermercado 38, página de inicio"><span class="marca-hanzi" lang="zh-Hant">三發</span><span class="marca-ms">M/S 38</span></a>
+          <p>Supermercado 38: carnes, pan, abarrotes, fiestas y mascotas en Arraiján.</p>
+        </div>
+        <div>
+          <h2>Horario</h2>
+          <p class="mayuscula" data-horario-resumen>Todos los días de 7:00 a.m. a 10:00 p.m.</p>
+          <p class="estado" data-estado></p>
+        </div>
+        <div>
+          <h2>Dirección</h2>
+          <p>Calle principal, Arraiján, Panamá Oeste<br>Código plus W9Q5+P2F</p>
+          <p><a href="contacto.html">Cómo llegar</a></p>
+        </div>
+        <div>
+          <h2>Escríbenos</h2>
+          <div class="pie-enlaces">
+            <a href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener">WhatsApp 6767-6813</a>
+            <a href="tel:+50767676813">Llamar al 6767-6813</a>
+          </div>
+        </div>
+        <div>
+          <h2>En la página</h2>
+          <nav class="pie-enlaces" aria-label="Todas las páginas">
+            <a href="index.html">Inicio</a>
+            <a href="departamentos.html">Departamentos</a>
+            <a href="panaderia.html">Panadería</a>
+            <a href="ofertas.html">Ofertas</a>
+            <a href="pedidos.html">Mi lista</a>
+            <a href="cotizacion.html">Pedidos especiales</a>
+            <a href="contacto.html">Cómo llegar</a>
+          </nav>
+        </div>
+      </div>
+      <div class="pie-final">
+        <p>© <span data-anio>2026</span> Supermercado 38, Arraiján.</p>
+        <p>Precios en balboas. El precio final es el de caja.</p>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="barra-movil" aria-label="Acciones rápidas">
+    <a class="barra-wa" href="https://wa.me/50767676813?text=Hola%2C%20Supermercado%2038.%20Les%20escribo%20desde%20la%20p%C3%A1gina%20web." target="_blank" rel="noopener"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 0 1-12.6 7.45L3.5 20.5l1.1-4.2A8.5 8.5 0 1 1 20.5 12z"/></svg>WhatsApp</a>
+    <a href="tel:+50767676813"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.6 4.3-2 1.3a12 12 0 0 0 6.1 6.1l1.3-2 4.3 1.6v2.6a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg>Llamar</a>
+    <a href="contacto.html"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.9-6.5-11a6.5 6.5 0 0 1 13 0c0 5.1-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Cómo llegar</a>
+    <a href="pedidos.html#tu-lista" data-lista-enlace><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5h17l-1.7 8.7a2 2 0 0 1-2 1.6H7.2a2 2 0 0 1-2-1.6z"/><path d="M8.5 9.5l3-5.5M15.5 9.5l-3-5.5M9.5 13.5v3M14.5 13.5v3"/></svg>Mi lista <span class="contador" data-contador hidden>0</span></a>
+  </nav>
+</body>
+</html>
